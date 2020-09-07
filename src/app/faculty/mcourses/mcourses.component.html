@@ -1,0 +1,58 @@
+ 
+
+<div style=" min-height: 90vh;">
+    <mat-card  class="m-2 m-lg-5  " style="background-color: rgb(255, 255, 255) !important;min-height: 65vh; border-radius: 15px;">
+        <!-- <button mat-raised-button style=" position: absolute; right: 0;  " [routerLink]="['/faculty/add']" routerLinkActive="router-link-active" >Add Courses</button> -->
+
+        <!-- <h3 class="ml-4">On going Courses</h3 >  -->
+            <app-loading  *ngIf=" isLoading"> </app-loading>
+              <div class="row">
+                <div class="col-md-12 section-header mb-5">
+                    <h2 class="font-weight-bold">On going Courses</h2>
+                    <!-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ea quam laborum, ducimus,
+                        laboriosam sint dolorum aspernatur libero.</p> -->
+    
+                </div>
+                
+                <div class="col-md-12"  *ngIf="!isLoading">
+                    <ngu-carousel #myCarousel [inputs]="carouselTile" [dataSource]="courses">
+                        <ngu-tile *nguCarouselDef="let item; let i = index">
+    
+                            <div class="service-wrap ">
+                                <div class="card o-hidden mb-4">
+    
+                                    <div class="card-header p-0 text-left ">
+    
+                                        <img class="img-responsive" [src]="carouselTileItems[i+2].icon">
+                                    </div>
+                                    <div class="card-body text-left">
+                                        <h3 class="card-title text-capitalize font-weight-bold">{{item.subject}}</h3>
+                                        <p class="card-text">{{item.duration}}</p>
+                                        <p class="card-text">{{item.slot}}</p>
+                                        <!-- <a href="#" class="text-primary text-capitalize font-weight-medium"> <span>Read More</span> </a> -->
+                                    </div>
+                                    <div class="card-footer pl-3 text-left">
+                                        <p class="card-text"> Status : {{item.status ? 'OnGoing' : 'Completed'}}</p>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+    
+    
+                        </ngu-tile>
+                        <span NguCarouselPrev
+                            class="ngu_control_button half-button leftRs btn btn-circle btn-white btn-shadow"
+                             > <</span>
+                        <span NguCarouselNext
+                            class="ngu_control_button half-button rightRs btn btn-circle btn-white btn-shadow"
+                          >> </span> 
+                    </ngu-carousel>
+                </div>
+    
+            </div>
+    </mat-card>
+</div>
+
+
+  

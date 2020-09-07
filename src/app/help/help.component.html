@@ -1,0 +1,127 @@
+<!-- <br><br>
+<h2 style="text-align: center;">Help Center</h2>
+<div class="container" style="height: 100vh;">
+    <div class="row">
+        <div class="col-md-8 col-12 m-auto    ">
+            <mat-card class="bg pl-5 l-b-5"><br>
+                <form (submit)="onSigninE(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+                    <mat-form-field   appearance="outline" style="width: 50%;">
+                        <mat-label>Problem</mat-label>
+                        <mat-select name="style" ngModel   #GenderInput="ngModel"  required>
+                          
+                          <mat-option value="Male">Not Loading</mat-option>
+                          <mat-option value="Female">Change Phone Number</mat-option>
+                          <mat-option value="Male">Change Email</mat-option>
+                          <mat-option value="Female">None of the above</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="GenderInput.invalid">Please select a Problem.</mat-error>
+                      </mat-form-field><br>
+
+
+                   <mat-form-field  appearance="outline"><mat-label>Description</mat-label>
+                        <textarea matInput name="des"  maxlength="200" minlength="4" 
+                        ngModel type="text" placeholder="Short Description" #hdInput="ngModel"  required ></textarea>
+                        <mat-error *ngIf="hdInput.invalid">Please enter a Short Description.</mat-error>
+                    </mat-form-field> 
+                    <br>  
+                    <button mat-raised-button   type="submit"  >Submit</button><br><br>
+                  </form>
+                  
+            </mat-card>
+        </div>
+    </div>
+</div> -->
+
+ 
+   <div style="overflow-x: hidden;">
+     
+    <br>
+       <div class="row"  > 
+           <mat-card class="col-10 col-md-8 ml-5 ml-md-0 ml-md-5 mr-2  " style="min-height: 87vh;border-radius: 12px;">
+            <h2 class="page-title">Help Center</h2>  
+            <br>
+             
+            <app-loading *ngIf=" isLoading" ></app-loading>
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort   *ngIf="!isLoading">
+            
+                <!-- ID Column -->
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Ticket Id</th>
+                  <td mat-cell *matCellDef="let row;let i =index">
+                    <a mat-icon-button  [routerLink]="['/'+url+'/help/'+users[i]._id]" 
+                    routerLinkActive="router-link-active"  style="  
+                    color: rgb(94, 141, 163);">{{row.ticketId  }}
+                    </a>
+              </td>
+                </ng-container> 
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Problem </th>
+                  
+                  <td mat-cell *matCellDef="let row"> {{row.query }} </td>
+                </ng-container> 
+                <!-- Progress Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>  Status </th>
+                  <td mat-cell *matCellDef="let row"> 
+                    {{ (row.status) ? 'close' : 'open' }}  
+                  </td>
+                  
+                </ng-container> 
+      
+
+                <!-- <ng-container matColumnDef="update">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>   </th>
+                  
+                  <td mat-cell *matCellDef="let row ; let i = index">
+                    <button mat-raised-button  [routerLink]="['/faculty/help/'+users[i]._id]" routerLinkActive="router-link-active"  style="background-color: rgba(70, 70, 70, 0.192) !important; color: white;">add more details</button>
+                      
+                    </td>
+                </ng-container>  -->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+              </table>
+            </div>
+
+           </mat-card>
+           <mat-card  class="col-10 col-md-3 ml-5 ml-md-0  mt-5 mt-md-0 "  style="height: 87vh;border-radius: 12px; ">     
+            <h1>Create Issues</h1>
+            <br><br> 
+            <app-loading *ngIf=" isLoading2" ></app-loading> 
+            <form (submit)="onAdd(signupForm)" *ngIf="!isLoading2"  #signupForm="ngForm"  >
+              
+                <mat-form-field   appearance="outline" style="width: 100%;">
+                    <mat-label>Problem</mat-label>
+                    <mat-select name="style" ngModel   #GenderInput="ngModel"  required>
+                      
+                      <mat-option *ngFor="let item of queries" [value]="item">{{item}}</mat-option> 
+                    </mat-select>
+                    <mat-error *ngIf="GenderInput.invalid">Please select a Problem.</mat-error>
+                  </mat-form-field><br>
+
+
+               <mat-form-field  style="  width: 100% !important; " appearance="outline"><mat-label>Description</mat-label>
+                    <textarea style="height: 130px;   "  matInput name="des"  maxlength="200" minlength="4"   
+                    ngModel type="text" placeholder="Short Description" #hdInput="ngModel"  required ></textarea>
+                    <mat-error *ngIf="hdInput.invalid">Please enter a Short Description.</mat-error>
+                </mat-form-field> 
+                <br>  
+                <br><br>
+                <button mat-raised-button  *ngIf="!isLoading3"
+                  type="submit" style="background-color: rgba(0, 0, 255, 0.603) !important; text-align: center !important ; color: white;" >
+                  Submit</button>
+
+                  <button *ngIf="isLoading3"  mat-raised-button style="background-color: rgba(0, 0, 255, 0.603) !important; color: white;" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                  </button>
+                  <br><br>
+              </form>
+              
+            </mat-card> 
+       </div>
+       <br>
+ 
+</div>

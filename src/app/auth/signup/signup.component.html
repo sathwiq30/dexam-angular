@@ -1,0 +1,494 @@
+
+
+  <div    style="font-size: 12px;   height: 80vh;" >
+    <div class="row   m-0"  >
+        <div  class="col-10 col-md-7  small"    style=" height: 80vh;background-color: rgba(3, 94, 230, 0.52);">
+          <img src="../../../assets/side.PNG" style="width: inherit;padding: 0;  " alt="">
+        </div>
+        <div class="col-10 m-auto col-md-4 "  >
+<br>
+            <img   
+            src="https://firebasestorage.googleapis.com/v0/b/homemade-de936.appspot.com/o/namastegurus.png?alt=media&token=d1695749-12c1-43f9-937f-38cc931ba848"
+              style="height: 10vh; width: 80%; margin-left: 10%;  "  alt=""> 
+          <h2 style="text-align: center;">Sign Up</h2>
+          <hr><br>
+          <img  *ngIf="isLoading" src="https://thumbs.gfycat.com/ConventionalOblongFairybluebird-max-1mb.gif" alt="">
+
+          <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+            {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+          </button> -->
+          <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel><span matTooltip="Fill out your name">Fill out your name</span></ng-template>
+                <!-- <mat-form-field>
+                  <mat-label>Name</mat-label>
+                  <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                </mat-form-field> -->
+
+                 
+                <mat-form-field  appearance="outline">
+                  <mat-label>User Name</mat-label>
+                  <input matInput formControlName="name" maxlength="200" minlength="4"  
+                   type="text" placeholder="User Name"    required >
+                  <mat-error  >Please enter a valid user name.</mat-error>
+                </mat-form-field> 
+                <mat-form-field  appearance="outline"><mat-label>Email</mat-label>
+                  <input matInput formControlName="email"  maxlength="320" minlength="6"  
+                  type="email" placeholder="E-Mail"  [email]="true" required email>
+                  <mat-error >Please enter a valid email.</mat-error>
+                </mat-form-field>
+                <mat-error *ngIf="r=='w'"> email is already used</mat-error>
+                <br> 
+            
+                <mat-form-field  appearance="outline"><mat-label>Phone Number</mat-label>
+                  <input matInput   [disabled]="ph"  maxlength="12" formControlName="phone"
+                   minlength="10" ngModel type="number" placeholder="Phone number"   required number>
+                  <mat-error  >Please enter a valid phone number.</mat-error>
+                </mat-form-field> 
+
+                
+                <mat-form-field   appearance="outline" style="width: 100%;">
+                  <mat-label>Gender</mat-label>
+                  <mat-select name="style"  formControlName="gender"      required>
+                    
+                    <mat-option value="Male">Male</mat-option>
+                    <mat-option value="Female">Female</mat-option>
+                  </mat-select>
+                  <mat-error  >Please select a Gender.</mat-error>
+                </mat-form-field><br>
+                <mat-form-field  appearance="outline"><mat-label>Password</mat-label>
+                  <input [type]="hide ? 'password' : 'text'"  maxlength="16" minlength="6" 
+                  formControlName="password"   matInput placeholder="Password" required>
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+                  </button>
+                  <mat-error >Please enter a valid password.</mat-error>
+                </mat-form-field><br>
+                <p style="color: red;">{{msg}}</p>
+                <button mat-flat-button  (click)="submited(stepper)" *ngIf="!otp" style="background-color: rgba(3, 94, 230, 0.52) !important;">Verify Phone Number</button>
+                <br>
+                <div>
+                  <button mat-raised-button matStepperNext  *ngIf=" otp"
+                   style="background-color: rgba(3, 94, 230, 0.52) !important; margin-top: 1vh; "  >Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Otp</ng-template> 
+                {{firstFormGroup.value.phone}}
+                <mat-form-field   *ngIf="otp" appearance="outline"><mat-label>Otp</mat-label>
+                  <input matInput formControlName="secondCtrl"  maxlength="12" minlength="6"  
+                  type="number" placeholder="OTP"   required number>
+                  <mat-error  >Please enter a valid OTP.</mat-error>
+                </mat-form-field> 
+ 
+                <p style="color: red;">{{msg}}</p>
+
+                <div>
+                  <button mat-button matStepperPrevious (click)="msg=''">Change Phone number</button>
+                  <button mat-button matStepperNext *ngIf="otp" (click)="confirmOtp(stepper)">Confirm Otp</button>
+                </div>
+              </form>
+            </mat-step>
+ 
+
+            <mat-step>
+              <ng-template matStepLabel>More Details</ng-template>
+                  <h2 *ngIf="isLoading  " style="text-align: center;">
+                 Confirming Please be patient
+              </h2>
+              <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+              <div *ngIf="!isLoading">
+                <p>{{msg}}</p>
+              </div >
+
+
+              <!-- <img class="col-12" src="https://cdn.dribbble.com/users/1154535/screenshots/3288650/dribbble-success-2.gif"  
+                 alt=""> 
+                 <h2 style="text-align: center;">
+                  Approve link in your email
+  
+                </h2> -->
+              <div>
+                <!-- <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button> -->
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+
+    
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 
+
+  <form (submit)="onSignupE(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+
+    <mat-form-field  appearance="outline"><mat-label>User Name</mat-label>
+      <input matInput name="user"  maxlength="200" minlength="4" ngModel type="text" placeholder="User Name" #nameInput="ngModel"  required >
+      <mat-error *ngIf="nameInput.invalid">Please enter a valid user name.</mat-error>
+    </mat-form-field> 
+    <br>
+
+    <mat-form-field  appearance="outline"><mat-label>Phone Number</mat-label>
+      <input matInput name="number" [disabled]="ph"  maxlength="12" minlength="10" ngModel type="number" placeholder="Phone number" #phoneInput="ngModel"  required number>
+      <mat-error *ngIf="phoneInput.invalid">Please enter a valid phone number.</mat-error>
+    </mat-form-field> 
+    <a *ngIf="!otp" mat-button (click)='onSendOtp(phoneInput.value)'>Send OTP</a>
+    <div *ngIf="verified">
+      <p>verified</p>
+    </div>
+    <br>
+    <div *ngIf="otp">
+      <mat-form-field  appearance="outline"><mat-label>Otp</mat-label>
+        <input matInput name="otp"  maxlength="12" minlength="6" ngModel type="number" placeholder="OTP" #OtpInput="ngModel"  required number>
+        <mat-error *ngIf="OtpInput.invalid">Please enter a valid OTP.</mat-error>
+      </mat-form-field> 
+      <a mat-icon-button (click)='onCOtp(phoneInput.value,OtpInput.value)'>Confirm</a>
+      <br>
+    </div>
+
+
+    <mat-form-field  appearance="outline"><mat-label>Email</mat-label>
+      <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
+      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="r=='w'"> email is already used</mat-error>
+    <br> 
+    
+    <mat-form-field  appearance="outline"><mat-label>Password</mat-label>
+      <input [type]="hide ? 'password' : 'text'"  maxlength="16" minlength="6" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+      </button>
+      <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+    </mat-form-field><br>
+
+    <mat-form-field   appearance="outline" style="width: 50%;">
+      <mat-label>Gender</mat-label>
+      <mat-select name="style" ngModel   #GenderInput="ngModel"  required>
+        
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+      <mat-error *ngIf="GenderInput.invalid">Please select a Gender.</mat-error>
+    </mat-form-field><br>
+
+    <mat-form-field  appearance="outline"><mat-label>Degree</mat-label>
+      <input matInput name="degree"  maxlength="200" minlength="4" 
+      ngModel type="text" placeholder="User Name" #hdInput="ngModel"  required >
+      <mat-error *ngIf="hdInput.invalid">Please enter a valid Degree.</mat-error>
+    </mat-form-field> 
+    <br>
+
+    <mat-form-field  appearance="outline"><mat-label>Description</mat-label>
+      <textarea matInput name="des"  maxlength="200" minlength="4" 
+      ngModel type="text" placeholder="Short Description" #hdInput="ngModel"  required ></textarea>
+      <mat-error *ngIf="hdInput.invalid">Please enter a Short Description.</mat-error>
+    </mat-form-field> 
+    <br>
+
+    <div class="col-12" >
+      <a (click)="aadharPicker.click()" mat-raised-button *ngIf=" !previewUrl " style="cursor: pointer;">
+          Aadhar Card
+          <mat-icon aria-hidden="false"  aria-label="Example home icon">cloud_upload</mat-icon>
+        </a>
+        <div  *ngIf="previewUrl">
+          Aadhar Card
+          <div *ngFor='let image of images;let i = index'> 
+            
+            <a   mat-raised-button style="cursor: pointer;">
+              <mat-icon aria-hidden="false"  aria-label="Example home icon"> check_circle</mat-icon>
+              Aadhar Card
+              <a (click)="onRemove(i)" style="cursor: pointer;">
+                <mat-icon aria-hidden="false"  *ngIf="previewUrl" aria-label="Example home icon">clear</mat-icon>
+            </a>
+            </a>
+            
+          </div>
+        </div>
+   </div>
+<br>
+   <div class="col-12">
+    <a (click)="idPicker.click()" mat-raised-button *ngIf=" !previewUrlId " style="cursor: pointer;">
+       Id Card
+       <mat-icon aria-hidden="false"  aria-label="Example home icon">cloud_upload</mat-icon>
+      </a>
+
+      
+      <div  *ngIf="previewUrlId">
+        <a    mat-raised-button style="cursor: pointer;">
+          <mat-icon aria-hidden="false"  aria-label="Example home icon"> check_circle</mat-icon>
+
+          Id Card 
+          <a (click)="onRemoveId(0)" style="cursor: pointer;">
+            <mat-icon aria-hidden="false"  *ngIf="previewUrlId" aria-label="Example home icon">clear</mat-icon>
+        </a>
+         </a> 
+      </div>
+ </div>
+<br>
+ <div class="col-12">
+  <a (click)="demoPicker.click()" mat-raised-button *ngIf=" !previewUrlVD " style="cursor: pointer;">
+     Demo video 
+      <mat-icon aria-hidden="false"  aria-label="Example home icon">cloud_upload</mat-icon>
+    </a>
+    <div  *ngIf="previewUrlVD">  
+      <a   mat-raised-button style="cursor: pointer;">
+        <mat-icon aria-hidden="false"  aria-label="Example home icon">check_circle</mat-icon>
+
+        Demo video 
+        <a (click)="onRemoveVd(0)" style="cursor: pointer;">
+          <mat-icon aria-hidden="false"  *ngIf="previewUrlVD" aria-label="Example home icon">clear</mat-icon>
+      </a> 
+       </a>    
+ 
+        
+    </div>
+ </div>
+   
+    <mat-error *ngIf="r"> {{r}}</mat-error><br>
+    <button mat-raised-button  color="primary" type="submit"  >Signup</button>    <br><br>
+  </form> -->
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <h2 style="text-align: center;">Sign Up</h2>
+ 
+  <mat-spinner *ngIf="isLoading" ></mat-spinner>
+  <mat-tab-group>
+    <mat-tab label="Student">
+      <ng-template matTabContent>
+
+        <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+
+          <mat-form-field>
+            <input matInput name="user"  maxlength="200" minlength="4" ngModel type="text" placeholder="User Name" #nameInput="ngModel"  required >
+            <mat-error *ngIf="nameInput.invalid">Please enter a valid user name.</mat-error>
+          </mat-form-field> 
+          <br>
+
+          <mat-form-field>
+            <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
+            <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+          </mat-form-field> 
+          <br> 
+
+          <mat-form-field>
+            <input matInput name="number"  maxlength="12" minlength="10" ngModel type="number" placeholder="Phone number" #phoneInput="ngModel"  required number>
+            <mat-error *ngIf="phoneInput.invalid">Please enter a valid phone number.</mat-error>
+          </mat-form-field> 
+          <br> 
+
+          <mat-form-field>
+            <input [type]="hide ? 'password' : 'text'"  maxlength="16" minlength="6" name="password"
+             ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+            </button>
+            <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+          </mat-form-field><br>
+          
+          <mat-form-field>
+            <input type="password"  maxlength="16" minlength="6" name="cpassword"
+             (input) = "confirmPassword($event,passwordInput.value)"
+            ngModel matInput placeholder="Confirm Password" #cpasswordInput="ngModel" required>
+            <mat-error *ngIf="passwordInput.value != cpasswordInput.value ">Please enter same password.</mat-error>
+
+          </mat-form-field>
+          <mat-error *ngIf="same">Please enter same password.</mat-error>
+          
+          <mat-error *ngIf="r"> {{r}}</mat-error>
+          <br><br>
+          <h2>Education Details</h2>
+          <mat-form-field  style="width: 50%;">
+            <mat-label>Grade</mat-label>
+            <mat-select name="grade" ngModel   #GradeInput="ngModel" required>
+              <mat-option value="6TH">6TH</mat-option>
+              <mat-option value="7TH">7th</mat-option>
+              <mat-option value="8TH">8TH</mat-option>
+              <mat-option value="9TH">9th</mat-option> 
+              <mat-option value="10TH">10TH</mat-option>
+              <mat-option value="11TH">11TH</mat-option> 
+              <mat-option value="12TH">12th</mat-option>
+              <mat-option value="Degree">Degree</mat-option>
+            </mat-select>
+            <mat-error *ngIf="GradeInput.invalid">Please select an grade.</mat-error>
+          </mat-form-field><br>
+
+          <mat-form-field  style="width: 50%;">
+            <mat-label>Board</mat-label>
+            <mat-select name="board" ngModel   #BoardInput="ngModel" required>
+              
+              <mat-option value="CBSE">CBSE</mat-option>
+              <mat-option value="STATE">SSC</mat-option> 
+              <mat-option value="ICSE">ICSE</mat-option>
+              <mat-option value="OTHER">OTHER</mat-option> 
+            </mat-select>
+            <mat-error *ngIf="BoardInput.invalid">Please select an board.</mat-error>
+          </mat-form-field><br>
+
+          <mat-form-field  style="width: 50%;">
+            <mat-label>Medium</mat-label>
+            <mat-select name="medium" ngModel   #MediumInput="ngModel" required>
+              
+              <mat-option value="English">English</mat-option>
+              <mat-option value="Telugu">Telugu</mat-option>
+              <mat-option value="Hindi">Hindi</mat-option>
+            </mat-select>
+            <mat-error *ngIf="MediumInput.invalid">Please select an medium.</mat-error>
+          </mat-form-field><br>
+          
+          <mat-form-field  style="width: 50%;">
+            <mat-label>Prefered Teaching</mat-label>
+            <mat-select name="style" ngModel   #StyleInput="ngModel" required>
+              
+              <mat-option value="One to One">One to one</mat-option>
+              <mat-option value="One to One">many</mat-option>
+            </mat-select>
+            <mat-error *ngIf="StyleInput.invalid">Please select an teaching style.</mat-error>
+          </mat-form-field><br>
+
+          <button mat-raised-button color="primary" type="submit"  >Signup</button>
+        </form>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Educator">
+      <ng-template matTabContent>
+        <br><br>
+        <form (submit)="onSignupE(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+
+          <mat-form-field>
+            <input matInput name="user"  maxlength="200" minlength="4" ngModel type="text" placeholder="User Name" #nameInput="ngModel"  required >
+            <mat-error *ngIf="nameInput.invalid">Please enter a valid user name.</mat-error>
+          </mat-form-field> 
+          <br>
+
+          <mat-form-field>
+            <input matInput name="number" [disabled]="ph"  maxlength="12" minlength="10" ngModel type="number" placeholder="Phone number" #phoneInput="ngModel"  required number>
+            <mat-error *ngIf="phoneInput.invalid">Please enter a valid phone number.</mat-error>
+          </mat-form-field> 
+          <a *ngIf="!otp" mat-icon-button (click)='onSendOtp(phoneInput.value)'>Send OTP</a>
+          <div *ngIf="verified">
+            <p>verified</p>
+          </div>
+          <br>
+          <div *ngIf="otp">
+            <mat-form-field>
+              <input matInput name="otp"  maxlength="12" minlength="6" ngModel type="number" placeholder="OTP" #OtpInput="ngModel"  required number>
+              <mat-error *ngIf="OtpInput.invalid">Please enter a valid OTP.</mat-error>
+            </mat-form-field> 
+            <a mat-icon-button (click)='onCOtp(phoneInput.value,OtpInput.value)'>Confirm</a>
+            <br>
+          </div>
+
+
+          <mat-form-field>
+            <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
+            <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+          </mat-form-field>
+          <mat-error *ngIf="r=='w'"> email is already used</mat-error>
+          <br> 
+          
+          <mat-form-field>
+            <input [type]="hide ? 'password' : 'text'"  maxlength="16" minlength="6" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+            </button>
+            <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+          </mat-form-field><br>
+
+          <mat-form-field  style="width: 50%;">
+            <mat-label>Gender</mat-label>
+            <mat-select name="style" ngModel   #GenderInput="ngModel"  required>
+              
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+            </mat-select>
+            <mat-error *ngIf="GenderInput.invalid">Please select a Gender.</mat-error>
+          </mat-form-field><br>
+
+          <mat-form-field>
+            <input matInput name="degree"  maxlength="200" minlength="4" 
+            ngModel type="text" placeholder="User Name" #hdInput="ngModel"  required >
+            <mat-error *ngIf="hdInput.invalid">Please enter a valid Degree.</mat-error>
+          </mat-form-field> 
+          <br>
+
+          <mat-form-field>
+            <textarea matInput name="des"  maxlength="200" minlength="4" 
+            ngModel type="text" placeholder="Short Description" #hdInput="ngModel"  required ></textarea>
+            <mat-error *ngIf="hdInput.invalid">Please enter a Short Description.</mat-error>
+          </mat-form-field> 
+          <br>
+
+          <div class="col-12">
+            <a (click)="aadharPicker.click()"  *ngIf=" !previewUrl " style="cursor: pointer;">
+                Aadhar Card
+                <mat-icon aria-hidden="false"  aria-label="Example home icon">camera</mat-icon>
+              </a>
+              <div  *ngIf="previewUrl">
+                Aadhar Card
+                <div *ngFor='let image of images;let i = index'>
+                  <img style="border-radius: .5vw;" width="200px" [src]="image"  >
+                  <a (click)="onRemove(i)" style="cursor: pointer;">
+                      <mat-icon aria-hidden="false"  *ngIf="previewUrl" aria-label="Example home icon">clear</mat-icon>
+                  </a>
+                </div>
+              </div>
+         </div>
+
+         <div class="col-12">
+          <a (click)="idPicker.click()"  *ngIf=" !previewUrlId " style="cursor: pointer;">
+             Id Card
+              <mat-icon aria-hidden="false"  aria-label="Example home icon">camera</mat-icon>
+            </a>
+            <div  *ngIf="previewUrlId">
+              Id Card <br>
+              <div *ngFor='let image of imagesId;let i = index'>
+                <img style="border-radius: .5vw;" width="200px" [src]="image"  >
+                <a (click)="onRemoveId(i)" style="cursor: pointer;">
+                    <mat-icon aria-hidden="false"  *ngIf="previewUrlId" aria-label="Example home icon">clear</mat-icon>
+                </a>
+              </div>
+            </div>
+       </div>
+
+       <div class="col-12">
+        <a (click)="demoPicker.click()"  *ngIf=" !previewUrlVD " style="cursor: pointer;">
+           Demo video 
+            <mat-icon aria-hidden="false"  aria-label="Example home icon">camera</mat-icon>
+          </a>
+          <div  *ngIf="previewUrlVD">  
+            Demo video    <br> 
+              <video  style="border-radius: .5vw;" [src]="videoUrl" width="200px" ></video>
+              <a (click)="onRemoveVd(i)" style="cursor: pointer;">
+                  <mat-icon aria-hidden="false"  *ngIf="previewUrlVD" aria-label="Example home icon">clear</mat-icon>
+              </a> 
+          </div>
+       </div>
+         
+          <mat-error *ngIf="r"> {{r}}</mat-error>
+          <button mat-raised-button  color="primary" type="submit"  >Signup</button>
+        </form>
+
+        <input type="file" #aadharPicker (change)="onImagePicked($event)">
+        <input type="file" #idPicker (change)="onImagePickedId($event)">
+        <input type="file" #demoPicker (change)="onVedioPickedId($event)">
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>   -->

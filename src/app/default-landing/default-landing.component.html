@@ -1,0 +1,99 @@
+ 
+    <mat-toolbar  color="primary"  class="t ">
+  
+        <span  >
+          <a   routerLink="/"  >
+            <img src="https://firebasestorage.googleapis.com/v0/b/homemade-de936.appspot.com/o/namastegurus.png?alt=media&token=d1695749-12c1-43f9-937f-38cc931ba848" alt="" style="width: 150px;   height: 73px; ">
+           </a>
+        </span>
+        <div class="dis">
+           <span class="ml-5">
+            <a mat-button   >Home</a>
+          </span>
+          <span class="ml-5">
+            <a mat-button   >About Us</a>
+          </span>
+        </div>
+        <span class="example-fill-remaining-space"></span>  
+        <div class="d ">
+          <span  >
+            <a mat-button  (click)="openDialog1()" >Login</a>
+            <!-- [routerLink]="['/auth/signin']" routerLinkActive="router-link-active"  -->
+          </span>
+          <span style="margin-right: 15vw;">
+            <a mat-button 
+            (click)="openDialog()" 
+              >signup</a>
+              <!-- [routerLink]="['/auth/signup']" routerLinkActive="router-link-active"  -->
+          </span>
+        </div> 
+      </mat-toolbar> 
+<br><br><br>
+<div class="container-fluid">
+  <div class="row ">
+    <div class="col-10  m-auto col-md-7 center  "> 
+        <h3 style="font-size: 5vh; font-weight: 500;color: rgba(0, 0, 0, 0.692);">Learn online</h3>
+<div  class=" ">
+  <h1 class="page-title" style="font-size: 7vh;font-stretch: narrower; color: rgba(0, 0, 0, 0.678);   ">Update Yourself</h1><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ab enim laborum hic est itaque molestias neque, fugiat, dolor veniam minima placeat in debitis quam illum architecto unde provident. Commodi.</p>
+
+</div>
+        <button mat-raised-button (click)="openDialog()"    > Join Now 
+          <mat-icon style="float: right;vertical-align: middle;">arrow_right_alt</mat-icon>
+        </button>
+        <br><br><br>
+
+  </div>
+    <div class="col-10 m-auto col-md-5 ">
+        <img src="../../assets/Index.png" style="width: inherit;" alt="">
+    </div>
+  </div>
+</div>
+  <div  style=" overflow-x: hidden;"> 
+    <div class="row">
+
+     
+    <div class="col-12 ml-0   col-md-5 bgi pl-0 " >
+      <img   style="width: inherit;" src="../../assets/teacher_PNG32@2x.png" alt="">
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-10 m-auto col-md-5 ">
+      <h1>Our Story</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, atque aut minus quos excepturi architecto quisquam culpa sunt et, in ex ipsum deleniti consequatur eum quam quaerat non obcaecati adipisci.</p>
+      <div class="row">
+        <div class="col-2 p-0"><br>
+          <img src="../../assets/img1.PNG" style="width: inherit;" alt="">
+        </div> 
+
+        <div class="col-10">
+          <h4>Open Door Policy</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, atque aut minus quos excepturi </p>
+        </div>
+        <div class="col-2 p-0"><br>
+          <img src="../../assets/img 2.PNG" style="width: inherit;"alt="">
+        </div> 
+
+        <div class="col-10">
+          <h4>Open Door Policy</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, atque aut minus quos excepturi </p>
+        </div>
+        <div class="col-2 p-0"><br>
+          <img src="../../assets/img 3.PNG" style="width: inherit;" alt="">
+        </div> 
+
+        <div class="col-10">
+          <h4>Open Door Policy</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, atque aut minus quos excepturi </p>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<br><br>
+ 
+</div>
+<app-courses></app-courses>
+<app-hello></app-hello>
+
+<app-footer></app-footer>
+

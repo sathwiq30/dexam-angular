@@ -1,0 +1,115 @@
+<!-- <div class="header">
+    <div class="inner-header flex">
+
+        <h1  >Landing Page</h1>
+    </div> -->
+
+    <!--Waves Container-->
+    <!-- <div>
+        <svg class="waves"   viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">  
+             
+                <use xlink:href="#gentle-wave" x="28" y="7" fill="#fff" />
+            </g>  
+        </svg>
+        
+    </div> -->
+    <!--Waves end-->
+<!-- 
+</div>
+<div class="content flex " (scroll)="onWindowScroll($event);">
+    <br><br>
+<div class="container " style="margin-bottom: 300px; margin-left: 20px;margin-right: 20px;">
+ 
+     
+</div>
+</div>  -->
+<app-loading *ngIf=" isLoading" ></app-loading>
+<div style=" min-height: 100vh;  " >
+    
+<div *ngIf=" rekyc ||  !f ;else submitted"> 
+    <app-upload-kyc  *ngIf="!isLoading"  [reverify]="rekyc"></app-upload-kyc>
+</div>
+
+
+<ng-template #submitted>
+    <div *ngIf ="isVerified;else not" >
+        <div   *ngIf="!isLoading">
+            <mat-card  class="m-2 m-lg-5  " style="background-color: rgb(255, 255, 255);">
+                <h3 class="ml-4">On going Courses</h3 >
+                    <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+                        <ngu-tile  *nguCarouselDef="let item; let i = index; let ani = animate"> 
+                            <!-- [@slider]="ani" PLease this animation to this tile to see animation. stackblitz have error with animations -->
+                            <div class=" ">
+                                <mat-card class="p-0"   style="background-color:  #43425D ; z-index: 2; box-shadow: none; border-bottom-right-radius: 0;  border-bottom-left-radius: 0; ">
+                                   <br><br><br><br><br><br><br><br><br>
+                                </mat-card>
+                                <mat-card    style="background-color:  rgba(3, 94, 230, 0.52); color: #fff ;  border-top-right-radius: 0;  border-top-left-radius: 0;">
+                                     <span>English</span>
+                                </mat-card>
+                            </div> 
+                        </ngu-tile>
+                              <div style="display: none;">
+                                  
+                        <button  class="leftRs" #prev NguCarouselPrev  >&lt;</button>
+                        <button  class="rightRs"#prev2 NguCarouselNext >&gt;</button>
+                      
+                          </div>
+                     
+                      </ngu-carousel>
+            </mat-card>
+        
+            <mat-card  class="m-2 m-lg-5  " style="background-color: rgb(255, 255, 255);">
+                <h3 class="ml-4">My Courses</h3 >
+                    <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+                        <ngu-tile  *nguCarouselDef="let item; let i = index; let ani = animate"> 
+                            <!-- [@slider]="ani" PLease this animation to this tile to see animation. stackblitz have error with animations -->
+                            <div class=" ">
+                                <mat-card class="p-0"   style="background-color:  #43425D ; z-index: 2; box-shadow: none; border-bottom-right-radius: 0;  border-bottom-left-radius: 0; ">
+                                   <br><br><br><br><br><br><br><br><br>
+                                </mat-card>
+                                <mat-card    style="background-color:  rgba(3, 94, 230, 0.52) ; color: #fff; border-top-right-radius: 0;  border-top-left-radius: 0;">
+                                        <span>English</span>
+                                </mat-card>
+                            </div> 
+                        </ngu-tile>
+                              <div style="display: none;">
+                                  
+                        <button  class="leftRs" #prev NguCarouselPrev  >&lt;</button>
+                        <button  class="rightRs"#prev2 NguCarouselNext >&gt;</button>
+                      
+                          </div>
+                     
+                      </ngu-carousel>
+                
+            </mat-card>
+        
+        </div>
+         
+        
+    </div>
+</ng-template>
+
+
+<ng-template #not>
+  <div  *ngIf="!isLoading">
+    <br><br><br><br><br> <br><br> <br><br>
+    <div class="row p-0 m-0">
+        <mat-card class="col-6 col-md-6 m-auto bg">
+            <br><br><br>
+            <h3  > Not Verified </h3>
+            <br>
+            <span>
+                your KYC verification will be completed by third party vendor and we will notify you once the verification is done</span>
+        </mat-card>
+    </div>
+  </div>
+</ng-template> 
+
+
+
+
+</div>

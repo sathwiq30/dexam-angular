@@ -1,0 +1,63 @@
+<app-header-white></app-header-white>
+<div class="card o-hidden" [@animate]="{value:'*',params:{y:'120px',opacity:'0',delay:'100ms', duration: '400ms'}}">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="p-4">
+                <div class="  text-center mb-4">
+                    <img 
+                    width="60%"
+                    src="https://firebasestorage.googleapis.com/v0/b/homemade-de936.appspot.com/o/namastegurus.png?alt=media&token=d1695749-12c1-43f9-937f-38cc931ba848" 
+                    alt="">
+                </div>
+                <h1 class="mb-3 text-18">Sign In</h1>
+                <!-- <form action="">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input id="email" class="form-control" type="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" class="form-control" type="password">
+                    </div>
+                    <button class="btn btn-primary btn-block mt-2">Sign In</button>
+                </form> -->
+                <mat-spinner *ngIf="isLoading" ></mat-spinner>
+                <form (submit)="onSigninE(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="font-size: smaller;">
+                <mat-form-field  appearance="outline">
+                    
+                    <mat-label>Email</mat-label><span matPrefix> <mat-icon>email</mat-icon></span>
+                    <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
+                    <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+                </mat-form-field> 
+                <br><br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label><span matPrefix> <mat-icon>lock</mat-icon></span>
+                    <input [type]="hide ? 'password' : 'text'"  maxlength="16" minlength="1" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+                    </button>
+                    <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+                </mat-form-field><br>
+                <mat-error *ngIf="error">{{error}}</mat-error>
+
+                <a   routerLink="/auth/forgot" style="text-decoration: none; color: black;" routerLinkActive="active" (click)="openDialog()">Forgot Password</a><br>
+                <br>
+                <button mat-raised-button  color="primary" type="submit" style="color: black; background-color:rgba(3, 94, 230, 0.52) !important;"  >Login</button>
+                </form>
+
+
+            </div>
+        </div>
+        <div class="col-md-6 text-center " style="background-size: cover;background-image: url(./assets/images/landing/Bg/bg.jpeg)">
+            <div class="pr-3 auth-right">
+                <button class="btn btn-primary btn-block btn-icon btn-email" routerLink="/auth/signup">
+<!-- <i class="eva eva-email-outline"></i> -->
+            Sign up with Email
+          </button> 
+                <div class="mt-5">
+                    <a class="text-white" href="" routerLink="/sessions/forgot"><u>Forgot Password</u></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

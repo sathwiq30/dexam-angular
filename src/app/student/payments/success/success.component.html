@@ -1,0 +1,36 @@
+<div class="container" style="min-height: 92vh;">
+   <br>
+   <div *ngIf="!isLoading" class="col-12">
+     Time :  {{order.orderDate  | amLocale:'en' | amDateFormat:' Do MMMM YYYY, h:mm  a'}}
+     <br> Status : {{order.status}}
+     <br> Payment Method :{{order.payment_menthod}}
+      <br> Paid :{{order.order_total}}
+
+      <div *ngIf="order.iscart ; else not">  
+         Order details : 
+         <div *ngFor="let item of order.order"> 
+           
+            {{item.type}} , 
+            {{item.class}} , 
+            {{item.subject}} , 
+            {{item.slot}} , 
+            {{item.duration}}  
+         </div>
+
+      </div> 
+
+      <ng-template #not>
+        <br> Order details :  <br>
+           
+            {{order.type}} , 
+            {{order.class}} , 
+            {{order.subject}} , 
+            {{order.slot}} , 
+            {{order.duration}}  
+      </ng-template>
+      <img class="col-12" src="https://cdn.dribbble.com/users/1154535/screenshots/3288650/dribbble-success-2.gif"  
+      alt="">
+   </div>
+</div>
+
+<!--     -->

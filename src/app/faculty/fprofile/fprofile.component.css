@@ -1,0 +1,36 @@
+.background{
+    /* background-color: #343a40; */
+    background: linear-gradient(#039BE5 100% , #B2EBF2  0%);
+    overflow-x: hidden;
+  
+  }
+.prof{
+    width: 150px; height: 200px; border-radius: 50%;
+    transform: translateY(-50%);
+    border: 3px solid white;
+    padding: 0%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}   
+.container-fluid{
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.bg{
+    background-image: linear-gradient(#9abdca, #30bae4);
+    width: inherit  ;
+    color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 250px;
+    text-align: center;
+    border-radius: 15px;
+}
+.bg2{
+    background-image: linear-gradient(#f74ac3a9, #b928996b);
+    width: inherit  ;
+    color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 250px;
+    border-radius: 15px;
+    text-align: center;
+}

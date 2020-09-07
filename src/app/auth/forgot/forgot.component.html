@@ -1,0 +1,71 @@
+ 
+  <div class="b pl-0"   style="font-size: 16px;   height: 50vh;" >
+    <div class="row p-0 b "  >
+        <div  class="col-10 col-md-7 p-0 small"    style=" height: 40vh;background-color: rgba(3, 94, 230, 0.52);">
+          <img src="../../../assets/side.PNG" style="width: inherit;padding: 0;  " alt="">
+        </div>
+        <div class="col-10 m-auto col-md-4 p-0"  >
+          <br>
+          <img   
+          src="https://firebasestorage.googleapis.com/v0/b/homemade-de936.appspot.com/o/namastegurus.png?alt=media&token=d1695749-12c1-43f9-937f-38cc931ba848"
+            style="height: 10vh; width: 80%; margin-left: 10%;  "  alt=""> 
+                  <h2 style="text-align: center;">Forgot Password</h2>
+                  <hr><br>
+                  <img  *ngIf="isLoading" src="https://thumbs.gfycat.com/ConventionalOblongFairybluebird-max-1mb.gif" alt="">
+                  
+                  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="firstFormGroup">
+                      <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>Email</ng-template>
+                        <mat-form-field>
+                          <mat-label>email</mat-label>
+                          <input matInput placeholder="Email" formControlName="email" type="email" email required>
+                        </mat-form-field>
+                        {{msg}}
+                        <div>
+                          <button mat-button (click)= "sendOtp(stepper)">Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step [stepControl]="ThirdFormGroup">
+                        <form [formGroup]="ThirdFormGroup">
+                          <ng-template matStepLabel>Otp</ng-template>
+                          <mat-form-field>
+                            <mat-label>otp</mat-label>
+                            <input matInput formControlName="otp" placeholder="otp"
+                                   required>
+                          </mat-form-field> 
+                          <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                          </div>
+                        </form>
+                      </mat-step>
+                    <mat-step [stepControl]="secondFormGroup">
+                      <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>Password</ng-template>
+                        <mat-form-field>
+                          <mat-label>Password</mat-label>
+                          <input matInput formControlName="password" placeholder="password"
+                                 required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Confirm Password</mat-label>
+                            <input matInput formControlName="confirmPassword" placeholder="confirm Password"
+                                   required>
+                          </mat-form-field>
+                          {{msg}}
+                        <div>
+                          <button mat-button matStepperPrevious>Back</button>
+                          <button mat-button matStepperNext  (click)="onSubmit()">Submit</button>
+                        </div>
+                      </form>
+                    </mat-step> 
+                  </mat-horizontal-stepper>
+        </div>
+    </div>
+  </div>
+
+
+  
+                 

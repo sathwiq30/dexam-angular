@@ -1,0 +1,104 @@
+<div class="container"><br><br>
+    <mat-card>
+        <form [formGroup]="firstFormGroup">
+            
+            <mat-form-field appearance="outline">
+              <mat-label>current residing address</mat-label>
+              <input matInput placeholder="current residing address" formControlName="current_residing_address"   required>
+            </mat-form-field><br>
+            <mat-form-field appearance="outline">
+              <mat-label>aadhar address</mat-label>
+              <input matInput placeholder="aadhar address" formControlName="aadhar_address"   required>
+            </mat-form-field><br>
+            <mat-form-field appearance="outline">
+              <mat-label>alternate phone number</mat-label>
+              <input matInput placeholder="alternate phone number" formControlName="alternate_phone_number"   required>
+            </mat-form-field  ><br>
+            <mat-form-field appearance="outline">
+              <mat-label>father or guardian name</mat-label>
+              <input matInput placeholder="father or guardian name" formControlName="father_guardian_name"   required>
+            </mat-form-field>
+
+
+
+            <div class="col-12">
+              <a (click)="aadharPicker.click()" mat-raised-button *ngIf=" !previewUrl " style="cursor: pointer;">
+                Aadhar Card
+                <mat-icon aria-hidden="false"  style="float: right;" aria-label="Example home icon">cloud_upload</mat-icon>
+              </a>
+              <div  *ngIf="previewUrl">  
+                Aadhar Card
+                <div *ngFor='let image of images;let i = index'>
+                  <!-- <img style="border-radius: .5vw;" width="200px" [src]="image"  > -->
+                  
+                  <a   mat-raised-button style="cursor: pointer;">
+                    <mat-icon aria-hidden="false"  aria-label="Example home icon"> check_circle</mat-icon>
+                    Aadhar Card
+                    <a (click)="onRemove(i)" style="cursor: pointer;float: right;">
+                      <mat-icon aria-hidden="false"  *ngIf="previewUrl" aria-label="Example home icon">clear</mat-icon>
+                  </a>
+                  </a>
+                  
+                </div>
+              </div>
+              <br>
+           </div>
+  
+           <div class="col-12"><br>
+            <a (click)="idPicker.click()" mat-raised-button *ngIf=" !previewUrlId " style="cursor: pointer;">
+              Id Card
+              <mat-icon aria-hidden="false" style="float: right;"  aria-label="Example home icon">cloud_upload</mat-icon>
+             </a> 
+       
+             
+             <div  *ngIf="previewUrlId">
+               <a    mat-raised-button style="cursor: pointer;">
+                 <mat-icon aria-hidden="false"  aria-label="Example home icon"> check_circle</mat-icon>
+       
+                 Id Card 
+                 <a (click)="onRemoveId(0)" style="cursor: pointer;float: right;">
+                   <mat-icon aria-hidden="false"  *ngIf="previewUrlId" aria-label="Example home icon">clear</mat-icon>
+               </a>
+                </a>
+               <!-- <div *ngFor='let image of imagesId;let i = index'>
+                 <img style="border-radius: .5vw;" width="200px" [src]="image"  >
+                 <a (click)="onRemoveId(i)" style="cursor: pointer;">
+                     <mat-icon aria-hidden="false"  *ngIf="previewUrlId" aria-label="Example home icon">clear</mat-icon>
+                 </a>
+               </div> -->
+             </div><br>
+         </div>
+         <div class="col-11 col-md-6"  ><br>
+          <a (click)="dpPicker.click()" mat-raised-button *ngIf=" !previewUrlDp " style="cursor: pointer;">
+            Display Picture
+            <mat-icon aria-hidden="false" style="float: right;"  aria-label="Example home icon">cloud_upload</mat-icon>
+           </a> 
+       
+           
+           <div  *ngIf="previewUrlDp"><br>
+             <a    mat-raised-button style="cursor: pointer;">
+               <mat-icon aria-hidden="false"  aria-label="Example home icon"> check_circle</mat-icon>
+       
+              Display Picture
+               <a (click)="onRemoveDp(0)" style="cursor: pointer;float: right;">
+                 <mat-icon aria-hidden="false"  *ngIf="previewUrlDp" aria-label="Example home icon">clear</mat-icon>
+             </a>
+              </a>
+             <!-- <div *ngFor='let image of imagesId;let i = index'>
+               <img style="border-radius: .5vw;" width="200px" [src]="image"  >
+               <a (click)="onRemoveId(i)" style="cursor: pointer;">
+                   <mat-icon aria-hidden="false"  *ngIf="previewUrlId" aria-label="Example home icon">clear</mat-icon>
+               </a>
+             </div> -->
+           </div><br>
+        </div>
+            <div>
+              <button mat-button (click)="onSubmit()">Submit</button>
+            </div>
+          </form>
+
+          <input type="file" #aadharPicker (change)="onImagePicked($event)">
+        <input type="file" #idPicker (change)="onImagePickedId($event)">
+        <input type="file" #dpPicker (change)="onImagePickedDp($event)">
+    </mat-card>
+</div>

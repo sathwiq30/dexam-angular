@@ -1,0 +1,80 @@
+<nav id="home-header" [ngClass]="{'header-fixed': isFixed}" class="navbar navbar-expand-lg text-16 ">
+    <div class="container">
+
+
+        <div class="d-flex justify-content-between flex-grow-1 mobile_menu">
+
+            <a class="navbar-brand d-none d-lg-inline-block" href="#">
+             <p class="nav-link m-2 menu-item nav-active">   Namaste Guru</p>
+  </a>
+            <a class="navbar-brand-two    d-inline-block" href="#">
+                <img src="../../../../../favicon.ico" alt="logo">
+            </a>
+            <div class=" text-right">
+                <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
+                    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                    <i class="eva eva-menu-outline text-30 text-white d-none d-md-block"></i>
+                    <span class="navbar-toggler-icon d-block d-md-none">
+                        <!-- <i class="eva eva-menu-outline text-30 text-white"></i> -->
+                    </span>
+                    <span class="navbar-toggler-icon d-block d-md-none">
+                        <!-- <i class="eva eva-menu-outline text-30 text-white"></i> -->
+                    </span>
+                    <span class="navbar-toggler-icon d-block d-md-none">
+                        <!-- <i class="eva eva-menu-outline text-30 text-white"></i> -->
+                    </span>
+
+                </button>
+            </div>
+        </div>
+        <div class="collapse  navbar-collapse flex-grow-1 text-right" id="collapseExample" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+                <!-- <li class="nav-item" (click)="hidemenu()">
+                    <a href="#" scrollTo="intro-wrap" class="nav-link m-2 menu-item nav-active">Home</a>
+                </li> -->
+                <li (click)="hidemenu()" class="nav-item">
+                    <a href="#"   class="nav-link m-2 menu-item"> Student</a>
+                </li> 
+                <li (click)="hidemenu()" class="nav-item">
+                    <a href="#"   class="nav-link m-2 menu-item"> Tutor	   </a>
+                </li>
+                <!-- <li (click)="hidemenu()" class="nav-item">
+                    <a href="#" scrollTo="features-wrap" class="nav-link m-2 menu-item nav-active">Features</a>
+                </li>
+                <li (click)="hidemenu()" class="nav-item">
+                    <a href="#" scrollTo="services-wrap" class="nav-link m-2 menu-item">Services</a>
+                </li> -->
+                <!-- drop down menu start -->
+                <li class="nav-item">
+                    <a class="nav-link m-2 menu-item">Tutoring Courses</a>
+                    <!-- First  Drop Down -->
+                    <ul>
+
+                        <li  *ngFor="let item of data.standard"><a>{{item}}</a>
+                            <!-- Second  Drop Down -->
+                            <ul>
+                                
+                                <li  *ngFor="let it  of data.classes"><a>{{it.class}}</a>
+                                    <!-- Third  Drop Down -->
+                                    <ul>
+                                        <li  *ngFor="let i  of it.subject"><a href="#">{{i.name}}</a></li> 
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li> 
+
+
+                <li (click)="hidemenu()" class="nav-item">
+                    <a href="#"   class="nav-link m-2 menu-item">About Us</a>
+                </li>
+                <li (click)="hidemenu()" class="nav-item">
+                    <a href="#" scrollTo="contacts-wrap" class="nav-link m-2 menu-item">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+ 

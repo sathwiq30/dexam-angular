@@ -1,0 +1,107 @@
+ <!-- <br><br>
+<h2 style="text-align: center;">Help Center</h2>
+<div class="container" style="height: 100vh;">
+    <div class="row">
+        <div class="col-md-8 col-12 m-auto    ">
+            <mat-card class="bg pl-5 l-b-5"><br>
+                <form (submit)="onSigninE(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+                    <mat-form-field   appearance="outline" style="width: 50%;">
+                        <mat-label>Problem</mat-label>
+                        <mat-select name="style" ngModel   #GenderInput="ngModel"  required>
+                          
+                          <mat-option value="Male">Not Loading</mat-option>
+                          <mat-option value="Female">Change Phone Number</mat-option>
+                          <mat-option value="Male">Change Email</mat-option>
+                          <mat-option value="Female">None of the above</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="GenderInput.invalid">Please select a Problem.</mat-error>
+                      </mat-form-field><br>
+
+
+                   <mat-form-field  appearance="outline"><mat-label>Description</mat-label>
+                        <textarea matInput name="des"  maxlength="200" minlength="4" 
+                        ngModel type="text" placeholder="Short Description" #hdInput="ngModel"  required ></textarea>
+                        <mat-error *ngIf="hdInput.invalid">Please enter a Short Description.</mat-error>
+                    </mat-form-field> 
+                    <br>  
+                    <button mat-raised-button   type="submit"  >Submit</button><br><br>
+                  </form>
+                  
+            </mat-card>
+        </div>
+    </div>
+</div> -->
+
+ 
+<div style="overflow-x: hidden; min-height: 92vh;">
+     
+    <br>
+        <app-loading *ngIf=" isLoading" ></app-loading>
+       <div class="row"  *ngIf="!isLoading" > 
+            
+        <mat-card    class="col-10 col-md-8 ml-5 ml-md-0 ml-md-5 mr-2  " style="height: 87vh;border-radius: 12px;overflow-y: scroll;">
+            <button class="btn btn-danger" *ngIf="!users.status  " mat-flat-button style="  float: right;" (click)="close()">close</button>
+            status :  {{ (users.status) ? 'closed' : 'open'}} <br>
+            <span>id : {{users.ticketId}} </span> <br>
+            created At : {{users.createdAt  | amLocale:'en' | amDateFormat:' Do MMMM YYYY, h:mm  a'}} <br>
+            
+            <br>
+            <hr>
+            <div   >
+                <div   *ngFor="let item of users.thread">
+                    <br>
+    <div style="background-color: rgba(128, 128, 128, 0.281); padding: 1vw;  border-top-left-radius: .5vw; border-top-right-radius: .5vw; ">
+        <span style="float: right;">   {{item.createdAt | amLocale:'en' | amDateFormat:' Do MMMM YYYY, h:mm  a'}}</span>
+        
+        <span  > - {{item.createdBy}}</span>
+ 
+    </div>
+    <div style="  padding: 1vw;  border-bottom-left-radius: .5vw; border-bottom-right-radius: .5vw; border: .5px solid  rgba(128, 128, 128, 0.281); ">
+        <span>  {{item.description}}</span> 
+    </div>
+    
+
+    <br>
+</div> 
+            </div>
+            
+        </mat-card>
+           <mat-card  class="col-10 col-md-3 ml-5 ml-md-0  mt-5 mt-md-0 "  style="height: 87vh;border-radius: 12px; ">     
+            <h1>Reply to this  Issue</h1>
+
+            <br>
+            Ticket Id : {{users.ticketId}} 
+            <br> 
+<br>
+            <form *ngIf="!users.status else closed"  (submit)="onAdd(signupForm)"  #signupForm="ngForm"  >
+ 
+               <mat-form-field  style="  width: 100% !important; " appearance="outline"><mat-label>Description</mat-label>
+                    <textarea style="height: 130px;   "  matInput name="des"  maxlength="200" minlength="4"   
+                    ngModel type="text" placeholder="Short Description" #hdInput="ngModel"  required ></textarea>
+                    <mat-error *ngIf="hdInput.invalid">Please enter a Short Description.</mat-error>
+                </mat-form-field> 
+                <br>  
+                <br><br> 
+
+                <button mat-raised-button  *ngIf="!isLoading3"
+                  type="submit" style="background-color: rgba(0, 0, 255, 0.603) !important; text-align: center !important ; color: white;" >
+                  Reply<mat-icon>reply</mat-icon></button>
+
+                  <button *ngIf="isLoading3"  mat-raised-button style="background-color: rgba(0, 0, 255, 0.603) !important; color: white;" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                  </button>
+
+              </form>
+
+              <ng-template #closed>
+                  <a href="https://mail.google.com/mail/u/0/#inbox?compose=new">  Contact us with email</a><br>
+                  or <br>
+                  <a   href="/faculty/help"> create a new issue</a>
+                  
+              </ng-template>
+            </mat-card>
+       </div>
+       <br>
+ 
+</div>

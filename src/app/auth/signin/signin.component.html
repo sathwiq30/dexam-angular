@@ -1,0 +1,86 @@
+<!--  
+<div class="row">
+  <div style="background-color: rgba(3, 94, 230, 0.52);" class="col-8 p-0">
+    <img src="../../../assets/side.PNG" style="width: inherit;padding: 0;height: inherit;" alt="">
+  </div>
+  <div class="col-4">
+    <img src="./../../../assets/Capture.PNG" alt="">
+    <mat-tab-group>
+      <mat-tab label="Student">
+        <ng-template matTabContent>
+          <p *ngIf="isLoading " > Loading </p> 
+          <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading || co=='efailure' || co=='false'">
+            <mat-form-field>
+              <input matInput name="email" ngModel maxlength="320" minlength="6" type="email" [email]="true" placeholder="E-Mail" #emailInput="ngModel" required email>
+              <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+            </mat-form-field>
+            <mat-error class="e"  *ngIf="co=='efailure'">Please enter a valid email.</mat-error>
+            <br><br>
+            <mat-form-field>
+              <input [type]="hide ? 'password' : 'text'" maxlength="16" minlength="6" name="password" ngModel  matInput placeholder="Password" #passwordInput="ngModel" required>
+               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+              </button>
+              <mat-error   *ngIf="passwordInput.invalid ">Please enter a valid password.</mat-error>
+              
+            </mat-form-field>
+            <a mat-button routerLink="/auth/forgot" routerLinkActive="active">Forgot Password</a><br>
+            <mat-error *ngIf="error">{{error}}</mat-error>
+            <button mat-raised-button color="accent" type="submit">Login</button>
+          </form>
+           
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Educator">
+        <ng-template matTabContent>
+          <p *ngIf="isLoading " > Loading</p>
+          <br><br>
+          <form (submit)="onSigninE(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+            <mat-form-field>
+              <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
+              <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+            </mat-form-field> 
+            <br><br>
+            <mat-form-field>
+              <input [type]="hide ? 'password' : 'text'"  maxlength="16" minlength="1" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+              </button>
+              <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+            </mat-form-field><br>
+            <mat-error *ngIf="error">{{error}}</mat-error>
+            <a   routerLink="/auth/forgot" routerLinkActive="active">Forgot Password</a><br>
+            <button mat-raised-button  color="primary" type="submit"  >Login</button>
+          </form>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>   
+  
+   
+  </div>
+</div>          --> 
+<!-- <img  src=" " alt=""> -->
+<mat-spinner *ngIf="isLoading" ></mat-spinner>
+<form (submit)="onSigninE(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="font-size: smaller;">
+  <mat-form-field  appearance="outline">
+    
+    <mat-label>Email</mat-label><span matPrefix> <mat-icon>email</mat-icon></span>
+    <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
+    <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+  </mat-form-field> 
+  <br><br>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label><span matPrefix> <mat-icon>lock</mat-icon></span>
+    <input [type]="hide ? 'password' : 'text'"  maxlength="16" minlength="1" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+    </button>
+    <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+  </mat-form-field><br>
+  <mat-error *ngIf="error">{{error}}</mat-error>
+
+  <a   routerLink="/auth/forgot" style="text-decoration: none; color: black;" routerLinkActive="active" (click)="openDialog()">Forgot Password</a><br>
+  <br>
+  <button mat-raised-button  color="primary" type="submit" style="color: black; background-color:rgba(3, 94, 230, 0.52) !important;"  >Login</button>
+</form>
+

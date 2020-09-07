@@ -1,0 +1,73 @@
+
+<div >
+  <mat-drawer-container class="example-container" hasBackdrop="true">
+    <mat-drawer style="background-color: rgba(3, 94, 230, 0.52);color: aliceblue;"  class="drawer" #drawer mode="over" position="end">
+  
+      <button 
+        mat-button 
+        style="position: absolute; top: 0px; right: 0px;" 
+        (click)="drawer.toggle()">     <mat-icon >clear</mat-icon> 
+      </button>
+      <span>
+        <a mat-button  routerLink="/auth/login" routerLinkActive="active">login</a>
+      </span><br> 
+      <span>
+        <a mat-button  routerLink="/" routerLinkActive="active">signup</a>
+      </span><br> 
+     
+    </mat-drawer>
+    <mat-drawer-content>
+      <!-- <app-navbar      (open)="drawer.toggle()"></app-navbar> -->
+      <mat-toolbar  color="primary"  class="toolColor">
+
+  
+        <span>
+          <a mat-button routerLink="/" routerLinkActive="active">Namaste Guru</a>
+        </span>
+        <!-- <span>
+          <a mat-button *ngIf="!isChef && !isAdmin" routerLink="/staff" routerLinkActive="active">educator </a>
+        </span> -->
+        
+        <span class="example-fill-remaining-space"></span>
+        <div class="dis">
+          <span >
+            <a mat-raised-button color='primary' style="border-radius: 42%;" routerLink="/" routerLinkActive="active">Signup</a>
+          </span>
+            <span >
+                <a mat-raised-button color='primary' style="border-radius: 42%;" routerLink="/auth/login" routerLinkActive="active">Login</a>
+              </span>
+        </div>
+        <button class="smallscreen" mat-button (click)="drawer.toggle()"><mat-icon>list</mat-icon></button>
+        </mat-toolbar> 
+        
+
+      <div class="background">
+        <div class="row">
+          <div class="col-md-1">
+       
+          </div>
+          <div class="col-12 col-md-4 animate">
+            <div class="s">
+              <br><br><br><br><br><br><br>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Optio sed nihil sunt blanditiis quaerat quibusdam impedit voluptatibus repudiandae ut perferendis facilis quidem perspiciatis,
+               soluta, magnam omnis. Numquam fugiat ipsam consequuntur.</p>
+          </div>
+         <div class="col-10 col-md-8 col-lg-4 " style="margin-left: auto;margin-right: auto;" >
+            <!-- <app-signup></app-signup>    -->
+            <router-outlet></router-outlet>
+           <br><br>
+         </div> 
+        </div>
+      </div>
+      <div>
+        <h1 style="text-align: center;color: rgba(3, 94, 230, 0.52); display: none;">Cources</h1>
+      </div> 
+      <app-footer></app-footer>
+
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+      
+</div>

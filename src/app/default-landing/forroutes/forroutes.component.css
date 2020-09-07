@@ -1,0 +1,9 @@
+.mat-dialog-container { 
+      padding: 0px !important;  
+}
+
+ @media (max-width : 576px){
+    .small{
+      display: none;
+    }
+  }

@@ -1,0 +1,98 @@
+
+.example-container {
+    width: 100vw;
+    height: 100vh;
+  }
+.drawer{
+    padding: 10vw;
+}
+
+.mat-drawer {
+  background-color: #43425D;
+  color: rgba(255, 255, 255, 0.87) ;
+
+}
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+  .setting_wrap {
+  width: 40px; 
+  height: 40px;
+  background: #43425D;
+  color: white; 
+  line-height: 48px;
+  text-align: center;
+  font-size: 22px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;  
+  position: absolute;
+  top: 2px;
+}
+
+.example-container {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+  } 
+.drawer{
+    padding: 10vw;
+}
+.example-toolbar {
+   position: sticky;
+   top: 0;
+   z-index: 2;
+}
+ 
+.example-sidenav {
+   user-select: none;
+} 
+
+
+.menu-button {
+  transition: 300ms ease-in-out;
+  transform: rotate(0deg);
+}
+.menu-button.rotated {
+  transform: rotate(180deg);
+}
+
+
+.mat-list-base .mat-list-item {
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+@media (max-width : 500px){
+  .noe{
+      display: none;
+  }
+  .hi{
+    display: none;
+  }  .setting_wrap{
+    display: none;
+  }
+  .active{
+    background-color: #43425D !important;
+    color: rgb(72, 70, 153) !important;
+  }
+  .b{
+    display: none;
+  }
+}
+  
+@media (min-width : 500px){
+  .a{
+    display: none;
+  }
+
+}
+.active{
+  /* background-color:  rgb(255, 255, 255); */
+  color: rgb(255, 255, 255) !important;
+}
+.menu-item{
+  font-size: medium;
+  color: black;
+}

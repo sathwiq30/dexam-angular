@@ -1,0 +1,130 @@
+// solid Colors
+$blue: #263db5 !default;
+$sky-blue: rgb(115, 103, 240) !default;
+$indigo: #6610f2 !default;
+$purple: #663399 !default;
+$purple-light: #7566b5 !default;
+$pink: #0036ff !default;
+$red: #d22346 !default;
+$orange: #e97d23 !default;
+$yellow: #ffc107 !default;
+$green: #4caf50 !default;
+$teal: #20c997 !default;
+$cyan: #9c27b0 !default;
+$solid-colors: (
+  "blue": #aeacff,
+  "sky-blue": rgb(115, 103, 240),
+  "brown": #aeacff,
+  "teal": #aeacff,
+  "green": #aeacff,
+  "midnight-blue": #aeacff,
+  "indigo": #aeacff,
+  "indigo-light": #7d71d3,
+  "indigo-deep": #5252d4,
+  "indigo-ocean": #8a2be2,
+  "dark-purple": #322740,
+  "purple": #663399,
+  "pink": #cb3066,
+  "pink-light": #ff1493,
+  "red": #f44336,
+  "red-deep": #f84443,
+  "red-extra": #eb1536,
+  "red-light": #ff6f61,
+  "gray": #2d2d33,
+  "light-black": #241f3d,
+  "slate-gray": #405365,
+  "orange": #aeacff
+);
+// Gradient colors
+$gradient-colors: (
+  gradient-purple-indigo: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-blue-red: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-red-orange: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-black-blue: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-black-gray: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-steel-gray: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-grade-gray: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-cristal-clear: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-cool-blue: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-moonlight-asteriod: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-hervey: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-altra-violet: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-slight-ocean: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-red-sunset: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-quepal: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-lawrencium: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),  
+  gradient-meridian: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  )
+);
+$transpaprent-gradient-colors: (
+  gradient-purple-indigo: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-blue-red: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-black-blue: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-black-gray: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  ),
+  gradient-steel-gray: (
+    "start-color":#0036ff,
+    "end-color": #aeacff
+  )
+);

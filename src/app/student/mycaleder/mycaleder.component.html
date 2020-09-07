@@ -1,0 +1,46 @@
+<div class="container" style="overflow-x: hidden;">
+     
+    <br>
+       <div class="row"  > 
+           <mat-card class="col-10 col-sm-5 col-md-6 ml-5 col-lg-7 col-xl-8  ml-md-5 mr-2  " style="height: 87vh;border-radius: 12px;">
+            <h2 class="page-title">Calender</h2>
+            <p>No events created yet</p>
+           </mat-card>
+           <mat-card  class="col-10 col-md-3 ml-5 ml-md-0  mt-5 mt-md-0 "   style="height: 87vh;border-radius: 12px;">     
+   
+            <mat-calendar   [dateClass]="dateClass()" [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
+        
+            </mat-card> 
+       </div>
+       <br>
+ 
+</div>
+ 
+<!-- 
+<div class="header">
+    <div class="inner-header flex">
+
+        
+    </div> -->
+
+    <!--Waves Container-->
+    <!-- <div>
+        <svg class="waves"   viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill=" #43425D" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill=" #43425D" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill=" #43425D" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+    </div> -->
+    <!--Waves end-->
+
+<!-- </div>
+<div class="content flex">
+    <br><br>
+
+</div>  -->

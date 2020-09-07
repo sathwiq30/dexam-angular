@@ -1,0 +1,218 @@
+<app-header-white></app-header-white>
+<br><br><br><br>
+<div class="card o-hidden" [@animate]="{value:'*',params:{y:'120px',opacity:'0',delay:'100ms', duration: '400ms'}}">
+    <div class="row" style=" min-height: 60vh;">
+        <div class=" s col-md-4 text-center " 
+        style="background-size: cover;background-image: url(./assets/images/landing/Bg/bg.jpeg)">
+            <div class="pl-3 auth-right">
+                <button class="btn btn-primary btn-block btn-icon" routerLink="/auth/signin">
+
+          Sign in with Email
+        </button>
+   
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="p-0" style="font-size: smaller;">
+                <div class="  text-center mb-4">
+                    <img 
+                    width="60%"
+                    src="https://firebasestorage.googleapis.com/v0/b/homemade-de936.appspot.com/o/namastegurus.png?alt=media&token=d1695749-12c1-43f9-937f-38cc931ba848" 
+                    alt="">
+                </div>
+                <h1 class="mb-3 text-18">Sign Up</h1>
+                <!-- <p class="mb-4 text-muted font-small">Lorem ipsum dolor sit amet.</p> -->
+                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="firstFormGroup">
+                      <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel><span matTooltip="Fill out your name">Fill out your name</span></ng-template>
+                        <!-- <mat-form-field>
+                          <mat-label>Name</mat-label>
+                          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                        </mat-form-field> -->
+        
+                         <div class="row">
+                             <div class="col-md-6">
+                                <mat-form-field  appearance="outline">
+                                    <mat-label>User Name</mat-label>
+                                    <input matInput formControlName="name" maxlength="200" minlength="4"  
+                                     type="text" placeholder="User Name"    required >
+                                    <mat-error  >Please enter a valid user name.</mat-error>
+                                  </mat-form-field> 
+                             </div>
+                             <div class="col-md-6">
+                                <mat-form-field  appearance="outline"><mat-label>Email</mat-label>
+                                    <input matInput formControlName="email"  maxlength="320" minlength="6"  
+                                    type="email" placeholder="E-Mail"  [email]="true" required email>
+                                    <mat-error >Please enter a valid email.</mat-error>
+                                  </mat-form-field>
+                             </div>
+                             <div class="col-md-6">
+                                <mat-form-field  appearance="outline"><mat-label>Phone Number</mat-label>
+                                    <input matInput   [disabled]="ph"  maxlength="12" formControlName="phone"
+                                     minlength="10" type="number" placeholder="Phone number"   required number>
+                                    <mat-error  >Please enter a valid phone number.</mat-error>
+                                  </mat-form-field> 
+                  
+                             </div>
+                             <div class="col-md-6">
+                                <mat-form-field   appearance="outline" style="width: 100%;">
+                                    <mat-label>Gender</mat-label>
+                                    <mat-select name="style"  formControlName="gender"      required>
+                                      
+                                      <mat-option value="Male">Male</mat-option>
+                                      <mat-option value="Female">Female</mat-option>
+                                    </mat-select>
+                                    <mat-error  >Please select a Gender.</mat-error>
+                                  </mat-form-field>
+                             </div>
+                             
+                             <div class="col-md-6">
+                                <mat-form-field  appearance="outline"><mat-label>Password</mat-label>
+                                    <input [type]="hide ? 'password' : 'text'"  maxlength="16" minlength="6" 
+                                    formControlName="password"   matInput placeholder="Password" required>
+                                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> 
+                                    </button>
+                                    <mat-error >Please enter a valid password.</mat-error>
+                                  </mat-form-field>
+                             </div>
+                             <div class="col-md-6">
+                                <mat-form-field appearance="outline"><mat-label>Confirm Password</mat-label> 
+                                    <input type="password" matInput formControlName="confirmPassword" placeholder="confirm Password"
+                                           required>
+                                  </mat-form-field>
+                             </div>
+                         </div>
+                        
+
+                        
+                        <mat-error *ngIf="r=='w'"> email is already used</mat-error>
+                         
+                        <p style="color: red;">{{msg}}</p>
+                        <button mat-flat-button  (click)="submited(stepper)" *ngIf="!otp" style="background-color: rgba(3, 94, 230, 0.52) !important;">Verify Phone Number</button>
+                        <br>
+                        <div>
+                          <button mat-raised-button matStepperNext  *ngIf=" otp"
+                           style="background-color: rgba(3, 94, 230, 0.52) !important; margin-top: 1vh; "  >Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup">
+                      <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>Otp</ng-template> 
+                        {{firstFormGroup.value.phone}}
+                        <mat-form-field   *ngIf="otp" appearance="outline"><mat-label>Otp</mat-label>
+                          <input matInput formControlName="secondCtrl"  maxlength="12" minlength="6"  
+                          type="number" placeholder="OTP"   required number>
+                          <mat-error  >Please enter a valid OTP.</mat-error>
+                        </mat-form-field> 
+         
+                        <p style="color: red;">{{msg}}</p>
+                        
+                        <div>
+                          <button mat-button matStepperPrevious 
+                           style="background-color: rgba(141, 143, 146, 0.52) !important; margin-top: 1vh; " 
+                           (click)="msg=''">Change Phone number</button>
+                          <button mat-button  
+                          style="background-color: rgba(3, 94, 230, 0.52) !important; margin-top: 1vh; "
+                            *ngIf="otp" (click)="confirmOtp(stepper)">Confirm Otp</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step [stepControl]="thirdFormGroup">
+                      <form [formGroup]="thirdFormGroup">
+                        <ng-template matStepLabel>Education Details</ng-template>  
+
+                       
+                        <h2>Education Details</h2>
+                        <mat-form-field  style="width: 50%;">
+                          <mat-label>Grade</mat-label>
+                          <mat-select formControlName="grade"      required>
+                            <mat-option value="6TH">6TH</mat-option>
+                            <mat-option value="7TH">7th</mat-option>
+                            <mat-option value="8TH">8TH</mat-option>
+                            <mat-option value="9TH">9th</mat-option> 
+                            <mat-option value="10TH">10TH</mat-option>
+                            <mat-option value="11TH">11TH</mat-option> 
+                            <mat-option value="12TH">12th</mat-option>
+                            <mat-option value="Degree">Degree</mat-option>
+                          </mat-select>
+                          <mat-error  >Please select an grade.</mat-error>
+                        </mat-form-field><br>
+              
+                        <mat-form-field  style="width: 50%;">
+                          <mat-label>Board</mat-label>
+                          <mat-select formControlName="board"  required>
+                            
+                            <mat-option value="CBSE">CBSE</mat-option>
+                            <mat-option value="STATE">SSC</mat-option> 
+                            <mat-option value="ICSE">ICSE</mat-option>
+                            <mat-option value="OTHER">OTHER</mat-option> 
+                          </mat-select>
+                          <mat-error  >Please select an board.</mat-error>
+                        </mat-form-field><br>
+              
+                        <mat-form-field  style="width: 50%;">
+                          <mat-label>Medium</mat-label>
+                          <mat-select formControlName="medium"   required>
+                            
+                            <mat-option value="English">English</mat-option>
+                            <mat-option value="Telugu">Telugu</mat-option>
+                            <mat-option value="Hindi">Hindi</mat-option>
+                          </mat-select>
+                          <mat-error  >Please select an medium.</mat-error>
+                        </mat-form-field><br>
+                        
+                        <mat-form-field  style="width: 50%;">
+                          <mat-label>Prefered Teaching</mat-label>
+                          <mat-select formControlName="style"  required>
+                            
+                            <mat-option value="One to One">One to one</mat-option>
+                            <mat-option value="One to One">many</mat-option>
+                          </mat-select>
+                          <mat-error >Please select an teaching style.</mat-error>
+                        </mat-form-field><br>
+
+
+                        <p style="color: red;">{{msg}}</p>
+                        
+                        <div> 
+                          <button mat-button  
+                          style="background-color: rgba(3, 94, 230, 0.52) !important; margin-top: 1vh; "
+                             matStepperNext  (click)="onSignup()">Signup  </button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step>
+                      <ng-template matStepLabel>More Details</ng-template>
+ 
+                          <h2 *ngIf="isLoading" style="text-align: center;">
+                         Confirming Please be patient
+                      </h2>
+                      <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+                      <div *ngIf="!isLoading">
+                        <p>{{msg}}</p>
+                      </div >
+        
+        
+                      <!-- <img class="col-12" src="https://cdn.dribbble.com/users/1154535/screenshots/3288650/dribbble-success-2.gif"  
+                         alt=""> 
+                         <h2 style="text-align: center;">
+                          Approve link in your email
+          
+                        </h2> -->
+                      <div>
+                        <!-- <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button (click)="stepper.reset()">Reset</button> -->
+                      </div>
+                    </mat-step>
+                  </mat-horizontal-stepper>
+        
+               
+                    
+            </div>
+        </div>
+    </div>
+</div>

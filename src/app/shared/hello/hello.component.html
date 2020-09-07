@@ -1,0 +1,64 @@
+<div class="container-fluid bgi">
+    <div class="row">
+        <div class="col-10  m-auto col-md-9 ">
+          <h1 style="text-align: start;">People   About Us</h1>
+          <p style="text-align: start;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos sapiente corporis ?</p>
+        </div>
+        <div class="noe col-md-3">
+          <br><br>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col-3">
+              <img (click)="prev.click()"  style="width: 50px;cursor: pointer;" src="../../assets/arrow-long-2.png" alt="">
+    
+            </div>
+            <div class="col-3">
+              <img (click)="prev2.click()" style="width: 50px;cursor: pointer;"  src="../../assets/arrow-long-1@2x.png" alt="">
+    
+            </div>
+          </div> 
+        </div>
+      </div> 
+      <br><br>
+    <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+        <ngu-tile  *nguCarouselDef="let item; let i = index; let ani = animate"> 
+            <!-- [@slider]="ani" PLease this animation to this tile to see animation. stackblitz have error with animations -->
+          <div class="tile" style="margin-top: 4vh;" >
+            <br> 
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="../../../assets/303030.png" style="width:  80px;transform: translate(10px,-50px);" alt="">
+                    </div>
+                    <div class="col-8">
+                        <br><br>
+                        <img src="../../../assets/star-8.png" alt="">
+                        <img src="../../../assets/star-8.png" alt="">
+                        <img src="../../../assets/star-8.png" alt="">
+                        <img src="../../../assets/star-8.png" alt="">
+                    </div>
+                </div>
+                <p class="ml-4" style="text-align: start;">Hi akdjf ksldfjsa  skdlfja  fioajoew flsa  </p>
+
+                <div class="row">
+                  <div class="col-8">
+                    <h4 class="ml-4" style="text-align: start;">Sathwiq Reddy</h4>
+
+                  </div>
+                  <div class="col-4">
+                    <img src="../../../assets/com.PNG"  style="width: inherit;" alt="">
+                  </div>
+                </div>
+                <br>
+            </div>
+          </div>
+        </ngu-tile>
+              <div style="display: none;">
+                  
+        <button  class="leftRs" #prev NguCarouselPrev [style.opacity]="myCarousel.isFirst ? 0.5:1">&lt;</button>
+        <button  class="rightRs"#prev2 NguCarouselNext [style.opacity]="myCarousel.isLast ? 0.5:1">&gt;</button>
+      
+          </div>
+     
+      </ngu-carousel>
+</div>

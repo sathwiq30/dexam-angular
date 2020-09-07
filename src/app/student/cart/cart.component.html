@@ -1,0 +1,133 @@
+  
+            <!-- <mat-card>
+                <label id="example-radio-group-label">Pick your favorite season</label>
+                <br>
+                <mat-radio-group aria-label="Select an option" aria-labelledby="example-radio-group-label">
+                    <mat-radio-button value="1">1 week</mat-radio-button><br><br>
+                    <mat-radio-button value="1">2 week</mat-radio-button><br><br>
+                    <mat-radio-button value="1">3 week</mat-radio-button><br><br>
+                    <mat-radio-button value="2">other</mat-radio-button>
+                </mat-radio-group>
+            </mat-card> -->
+ 
+<!-- <div class="background">
+    <div class="container col-12 col-md-7 mt-5 mb-5">
+        <br><br>
+        <p style="color: aliceblue;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur earum, voluptate obcaecati fugiat sit sint omnis inven
+            tore ad .</p>
+            <br><br>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-9">
+            <h1>CLoud Computing</h1>
+            <p>Schedule : 9:30 to 10:30</p>
+            <h2>Prerequisites : </h2>
+            <div>
+                <ul>
+                    <li>lorem</li>
+                    <li>lorem</li>
+
+                </ul>
+            </div>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eum iure voluptatum provident natus,
+                 deleniti alias corporis dolorem architecto eligendi consequatur, veniam ratione qui adipisci,
+                  doloremque aspernatur? Debitis, quia, praesentium.
+            </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eum iure voluptatum provident natus,
+                deleniti alias corporis dolorem architecto eligendi consequatur, veniam ratione qui adipisci,
+                 doloremque aspernatur? Debitis, quia, praesentium.
+           </p>
+           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eum iure voluptatum provident natus,
+            deleniti alias corporis dolorem architecto eligendi consequatur, veniam ratione qui adipisci,
+             doloremque aspernatur? Debitis, quia, praesentium.
+             </p>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <img style="border-radius: 2%;width: inherit;" src="../../../assets/images/img_1.jpg"  alt="">
+                </div>
+                <div class="col-12 col-md-6">
+                    <img  style="border-radius: 2%; width: inherit;" src="../../../assets/images/img_1.jpg"  alt="">
+                </div>
+            </div><br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eum iure voluptatum provident natus,
+                deleniti alias corporis dolorem architecto eligendi consequatur, veniam ratione qui adipisci,
+                 doloremque aspernatur? Debitis, quia, praesentium.
+           </p>
+
+           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eum iure voluptatum provident natus,
+            deleniti alias corporis dolorem architecto eligendi consequatur, veniam ratione qui adipisci,
+             doloremque aspernatur? Debitis, quia, praesentium.
+       </p>
+
+        </div>
+        <div class="col-12 col-md-3">
+            <a href="http://paytmgateway.herokuapp.com/1.00/dfsdfghjk" class="m-5" mat-raised-button color="accent">Enroll Me</a>
+            <button (click)="click()    ">CLick</button>
+
+            <br>
+            <mat-card>
+                <h2 class="p-2 " style="text-align: center;">Course Instructor</h2>
+                <hr>
+                <br>
+                <div class="row">
+                    <img class="col-8 ml-auto mr-auto" src="../../../assets/images/img.jpg" style="border-radius: 50%;  " alt="">
+
+                </div>
+                <br>
+                <h2  style="text-align: center;">Sai Kiran</h2>
+                <p style="text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit.   </p>
+            </mat-card>
+        </div>
+    </div>
+    <br><br> 
+</div>  
+<div>
+    <h1 style="text-align: center;color: #000000;">More Courses</h1>
+  </div>
+  <div >
+    <app-carousal></app-carousal>
+
+  </div> -->
+<div   style="   border-radius: 12px; ">
+ 
+    <mat-card  class=" mt-5 col-10 mb-5   ml-auto mr-auto    " 
+    
+    style="background-color: rgb(255, 255, 255);min-height: 80vh;   border-radius: 12px; ">
+    <app-loading *ngIf="  isLoading"></app-loading>
+        <h3 class="ml-4  page-title">Cart</h3  >
+            <br><br>
+            
+            <div *ngIf=" !isLoading">
+                <div *ngIf="  cart.length ==0  ; else eeee">
+                    please check enrollment page to add to cart
+                </div> 
+            </div>
+            
+            <ng-template #eeee>
+                <div *ngFor="let item of cart">
+                    <div class="row"  >
+                        <div class="col-3 ml-auto mr-auto ">
+                            class {{item.class}} <br>
+                            duration    {{item.duration}} <br>
+                            subject   {{item.subject}} <br>
+    
+                        </div>
+                        <div class="col-2 ml-auto mr-auto ">
+                            price  {{item.total}} <br>
+    
+                        </div>
+                        <button mat-icon-button (click)="deletwe(item._id)"> <mat-icon>clear</mat-icon></button>
+                    </div>
+                    <hr>
+                </div>
+                <div class="  ml-auto mr-auto ">
+                    <button  mat-flat-button  style="background-color: rgba(3, 94, 230, 0.52) !important;">Buy now</button>
+    
+                </div>
+            </ng-template>
+            
+    </mat-card>
+</div>

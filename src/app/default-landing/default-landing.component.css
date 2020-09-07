@@ -1,0 +1,67 @@
+.container-fluid{
+    padding-left: 10vw !important;
+
+}
+.page-title:after {
+    content: ""; /* This is necessary for the pseudo element to work. */ 
+    display: block; /* This will put the pseudo element on its own line. */
+     /* This will center the border. */
+    width: 10%; /* Change this to whatever width you want. */
+    padding-top: 20px; /* This creates some space between the element and the border. */
+    border-bottom: 6px solid rgba(3, 94, 230, 0.52) ; /* This creates the border. Replace black with whatever color you want. */
+    border-radius: 3px;
+}
+.bgd{  border-radius: 50px;
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: left 5vw top 13vh;
+    background-image: 
+    url( 'https://firebasestorage.googleapis.com/v0/b/homemade-de936.appspot.com/o/dots2.jfif?alt=media&token=a6bfaeca-faf7-45aa-ba72-1cf3a0c26904')
+}
+.mat-raised-button { 
+    background-color: rgba(3, 94, 230, 0.52)   !important;
+    min-width: 15vw !important; 
+    text-align: start !important;
+  }
+.bgi{ 
+    background-repeat: no-repeat;
+  background-size: 42vw 80vh;
+    background-image: 
+    url( 'https://firebasestorage.googleapis.com/v0/b/homemade-de936.appspot.com/o/Component%2028%20%E2%80%93%201%402x.png?alt=media&token=96fa3815-ab14-4251-a9bb-2ff47d826b83')
+}
+.center{
+    vertical-align: inherit;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+
+  .t {
+      position: fixed;
+      z-index: 5;
+      top: 0;
+      height: 12vh;
+      /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  } 
+.smallscreen{
+    display: none;
+}
+.mat-toolbar.mat-primary {
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+}
+@media (max-width : 780px){
+    .bgi{
+        background-size: 80vw 50vh;
+    }
+    .smallscreen{
+        display: block;
+    }
+    .dis{
+        display: none;
+    }
+}

@@ -1,0 +1,217 @@
+<div style="overflow-x: hidden;">
+     
+  <br>
+     <div class="row"  > 
+         <mat-card class="col-10 col-md-7 ml-5 ml-md-0 ml-md-5 mr-2  " style="min-height: 87vh;border-radius: 12px;">
+          <h2 class="page-title">My Enrollment</h2>  
+          <br>
+          <app-loading *ngIf=" isLoading2" ></app-loading> 
+          <div *ngIf="!isLoading2">
+            <button   class="btn btn-danger"  *ngIf="! regis.data"  style="float: right " > delete </button>
+            <p>Duration : {{regis.duration}}</p>
+            <div class="row">
+              <div class="col-10 ml-auto col-md-5">
+                Standard
+                <ul>
+                  <li *ngFor="let s of regis.standard"> {{s}}</li>
+                </ul>
+              </div>
+              <div class="col-10 ml-auto col-md-5">
+                Medium
+                <ul>
+                  <li *ngFor="let s of regis.medium"> {{s}}</li>
+                </ul>
+              </div>
+              <div class="col-10 ml-auto col-md-5">
+                Teaches
+                <br>
+                <br>
+                <div  *ngFor="let s of regis.teaches">
+                  Classes : {{s.class}}
+                  <ul>
+                    <li *ngFor="let  a of s.subjects"> {{a}}</li>
+
+                  </ul>
+                </div>
+              </div>
+              <div class="col-10 ml-auto col-md-5">
+                 
+                <ul>
+                  <li *ngFor="let s of regis.subjects"> {{s}}</li>
+                </ul>  
+              </div> 
+              <div class="col-10 ml-auto col-md-5">
+                Weekday
+                <ul >
+                  <li *ngFor="let s of regis.weekday"> {{s.slot}}</li>
+                </ul>   
+              </div>
+              <div class="col-10 ml-auto col-md-5">
+                Weekends
+                <ul>
+                  <li *ngFor="let s of regis.weekend"> {{s.slot}}</li>
+                </ul>  
+              </div> 
+            </div>
+            
+            
+            
+             
+            
+            
+          </div>         
+          
+ 
+
+         </mat-card>
+         <mat-card  class="col-10 col-md-4 ml-5 ml-md-0  mt-5 mt-md-0 "  style="min-height: 87vh;border-radius: 12px; ">     
+          <h1>Enrollment</h1> 
+          <div  *ngIf=" verified; else notverified">
+            <app-loading *ngIf=" isLoading" ></app-loading>
+          <form  (submit)="onAdd(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+            <div class="row">
+              <div class="col-12  "  >
+                 
+                 <!-- <mat-form-field>
+                   <input matInput [name]="'name'"  maxlength="200" minlength="4" ngModel type="text" placeholder="Course Name" #nameInput="ngModel"  required >
+                   <mat-error *ngIf="nameInput.invalid">Please enter a valid  name.</mat-error>
+                 </mat-form-field>  -->
+                 <br>
+                 <mat-form-field *ngIf="!isLoading2" >
+                   <mat-label>Duration</mat-label>
+                   <mat-select [name]="'duration'" ngModel 
+                    [disabled] = "(regis.duration === undefined ||  regis.duration.length == 0  ) ? false : true " 
+                      #durationInput="ngModel"   >
+                     <mat-option value="Weekly">Weekly</mat-option>
+                     <mat-option value="15Days">15Days</mat-option>
+                     <mat-option value="Monthly">Monthly</mat-option>
+                     <mat-option value="3Months">3Months</mat-option>
+                     <mat-option value="6Months">6Months</mat-option>
+                   </mat-select>
+                   <mat-error *ngIf="durationInput.invalid">Please select a Duration.</mat-error>
+                 </mat-form-field><br>
+                 
+                 <mat-form-field  >
+                   <mat-label>Standard</mat-label>
+                   <mat-select [name]="'standard'" ngModel multiple  #standardInput="ngModel"   >
+                     
+                     <mat-option (click)="state= !state" value="STATE">State</mat-option>
+                     <mat-option value="ICSE">Icse</mat-option>
+                     <mat-option value="CBSE">Cbse</mat-option>
+                   </mat-select>
+                   <mat-error *ngIf="standardInput.invalid">Please select a Standard.</mat-error>
+                 </mat-form-field><br>
+ 
+                <mat-form-field  >
+                  <mat-label>Medium</mat-label>
+                  <mat-select [name]="'medium' " ngModel   #mediumInput="ngModel" multiple    > 
+                    <mat-option value="English"  >English</mat-option>
+                    <mat-option value="Hindi"  *ngIf=" state "  >Hindi</mat-option> 
+                    <mat-option value="Telugu"  *ngIf="state "  >Telugu</mat-option>
+                    
+                  </mat-select>
+                  <mat-error *ngIf="mediumInput.invalid">Please select a Medium.</mat-error>
+                </mat-form-field><br>
+                
+                <div  *ngFor="let c of count;let i = index" style="margin-top: 2px; border: .5px solid rgba(88, 88, 88, 0.432); padding: 10px ; border-radius: 5px;">
+                  <mat-form-field  >
+                    <mat-label>Classes</mat-label>
+                    <mat-select [name]="'classes'+i" ngModel   #ClassesInput="ngModel"    >
+                      <div *ngFor="let class of classes;let idx = index">
+                        <mat-option *ngIf="class.available  || class.isSelected == i" 
+                         [value]="class.name" (click)="onSelected(idx,i)">{{class.name}}    </mat-option>
+  
+                      </div>
+    
+                    </mat-select>
+                    <mat-error *ngIf="ClassesInput.invalid">Please select a class.</mat-error>
+                  </mat-form-field><br>
+                  
+  
+                  <mat-form-field  >
+                    <mat-label>Subjects</mat-label>
+                    <mat-select [name]="'subjects'+i " ngModel multiple   #subjectInput="ngModel"    >
+                     <mat-option *ngFor="let subject of classes[c.subject].subjects" [value]="subject">{{subject}}    </mat-option> 
+                    </mat-select>
+                    <mat-error *ngIf="subjectInput.invalid">Please select a Subject.</mat-error>
+                  </mat-form-field><br>
+                </div>
+                <div class="row">
+                  <div class="  m-auto">
+                    <a style="cursor: pointer; margin-left: auto !important; margin-right: auto !important;" (click)="count.push( {subject : 0 })" mat-icon-button >
+                      <mat-icon>add_box</mat-icon>
+                    </a>
+                  </div>
+                </div>
+                 
+                 
+                 
+                 <mat-form-field  >
+                   <mat-label>Weekdays</mat-label>
+                   <mat-select [name]="'weekdays' " ngModel   #weekInput="ngModel" multiple   > 
+                    <div  *ngFor="let time of  weekday ;let idx = index">
+                      <mat-option [value]="time.name"    
+                        >   {{time.name}}</mat-option>  
+  
+                     </div> 
+                   </mat-select>
+                   <mat-error *ngIf="weekInput.invalid">Please select a weekdays.</mat-error>
+                 </mat-form-field><br>
+                 
+                 <mat-form-field  >
+                   <mat-label>Weekends</mat-label>
+                   <mat-select [name]="'weekends' " ngModel   #endInput="ngModel" multiple   > 
+                    <div  *ngFor="let time of  weekend ;let idx = index">
+                      <mat-option [value]="time.name"  >   {{time.name}}</mat-option>  
+   
+                     </div> 
+                   </mat-select>
+                   <mat-error *ngIf="endInput.invalid">Please select a week ends.</mat-error>
+                 </mat-form-field><br> 
+             <br>
+           </div>     
+            </div> 
+         <br>
+              <mat-error *ngIf="r"> {{r}}</mat-error>
+              <button mat-raised-button  *ngIf="!isLoading3"
+                  type="submit" style="background-color: rgba(0, 0, 255, 0.603) !important; text-align: center !important ; color: white;" >
+                  Submit</button>
+
+                  <button *ngIf="isLoading3"  mat-raised-button style="background-color: rgba(0, 0, 255, 0.603) !important; color: white;" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                  </button>
+            </form>
+          </div>
+
+          <ng-template  #notverified>
+            <h2 style="margin-top: 30vh;">
+              Your account has not been verified yet 
+              please wait till verification is done to enroll
+            </h2>
+          </ng-template>
+          </mat-card> 
+     </div>
+     <br>
+
+</div>
+ 
+<!-- <div class="container" *ngIf="verified;else notVerified">
+ 
+ 
+</div>
+
+<ng-template #notVerified>
+  <div class="container">
+    <br><br><br><br><br>
+    <h1 style="text-align: center;">Not Verified It will be verified by third party vendor </h1>
+  </div>
+</ng-template> -->
+<!--  
+WEEKDAY: ['6-7AM', '5-6PM', '6-7PM', '6-7AM'],
+WEEKEND: 
+MEDIUM: ['Telugu', 'Hindi', 'English'],
+STANDARD ['STATE', 'CBSE', 'ICSE', 'OTHER'],
+DURATION: ['Weekly', '15Days','Monthly','3Months','6Months'], -->
+
+<!--  -->

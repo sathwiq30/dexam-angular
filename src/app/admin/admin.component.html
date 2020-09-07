@@ -1,0 +1,85 @@
+<mat-toolbar color="primary" style="background-color: #ffffff;color: black;" class="example-toolbar">
+    <button mat-icon-button class="b"   (click)="open()"><mat-icon>menu</mat-icon></button>
+    <span  >
+      <a   routerLink="/admin/dashboard"  >
+        <img src="https://firebasestorage.googleapis.com/v0/b/homemade-de936.appspot.com/o/namastegurus.png?alt=media&token=d1695749-12c1-43f9-937f-38cc931ba848"
+         alt="" style="width: 150px;   height: 73px; ">
+
+        <!-- <img src="../../assets/vHp-1.png" alt="" style="width: 150px; height: 8vh"> -->
+       </a>
+    </span>
+    <span class="example-fill-remaining-space"></span>
+    <button mat-button [matMenuTriggerFor]="menu">
+        <span class="hi"> {{name}}</span><mat-icon>keyboard_arrow_down</mat-icon> 
+        <img width="30vw" src="../../assets/303030.png" alt=""> 
+    </button>
+        <mat-menu #menu="matMenu">
+          <button routerLink="/faculty/profile" mat-menu-item>My Account</button> 
+          <button mat-menu-item (click)="logout()" >Logout</button>
+        </mat-menu>
+  </mat-toolbar>
+  <mat-sidenav-container  style="background-color:   #F0F0F7!important;" autosize>
+    <mat-sidenav #sidenav class="example-sidenav" [mode]="mode" [opened]="isOpened" 
+    (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+      <mat-nav-list>
+        <!-- <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Parent Menu</span>
+          <mat-icon mat-list-icon>dashboard</mat-icon>
+          <mat-icon class="menu-button"
+           [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+        </mat-list-item>  -->
+        <br><br> 
+        <mat-list-item  class="parent " routerLink="/admin/dashboard"  routerLinkActive="active">
+          <span class="full-width mr-5" *ngIf="isExpanded || isShowing" (click)=" Toggle() ">Dashboard</span>
+          <mat-icon mat-list-icon>dashboard</mat-icon>     
+        </mat-list-item> 
+        <mat-list-item  class="parent "  routerLinkActive="active"  (click)=" Toggle() "  routerLink="/admin/tutors">
+          <span class="full-width mr-5" *ngIf="isExpanded || isShowing"> tutors</span>
+          <mat-icon mat-list-icon>bar_chart</mat-icon>     
+        </mat-list-item>
+        <mat-list-item  class="parent " routerLinkActive="active" (click)=" Toggle() "  routerLink="/admin/students">
+          <span class="full-width mr-5" *ngIf="isExpanded || isShowing"   >Students </span>
+          <mat-icon mat-list-icon>date_range</mat-icon>     
+        </mat-list-item>
+        <mat-list-item  class="parent "  routerLinkActive="active" (click)=" Toggle() " routerLink="/admin/add">
+          <span class="full-width mr-5" *ngIf="isExpanded || isShowing">Management</span>
+          <mat-icon mat-list-icon>live_help</mat-icon>     
+        </mat-list-item>
+        <mat-list-item  class="parent "  routerLinkActive="active" (click)=" Toggle() " routerLink="/admin/addusers">
+          <span class="full-width mr-5" *ngIf="isExpanded || isShowing">Add Users</span>
+          <mat-icon mat-list-icon>add</mat-icon>     
+        </mat-list-item>
+        <mat-list-item  class="parent "  routerLinkActive="active" (click)=" Toggle() " routerLink="/admin/helpcenter">
+          <span class="full-width mr-5" *ngIf="isExpanded || isShowing">Help Center</span>
+          <mat-icon mat-list-icon>live_help</mat-icon>     
+        </mat-list-item>
+        <mat-list-item  class="parent "  routerLinkActive="active"  (click)=" Toggle() " routerLink="/admin/settings">
+          <span class="full-width mr-5" *ngIf="isExpanded || isShowing">Settings</span>
+          <mat-icon mat-list-icon>settings</mat-icon>     
+        </mat-list-item>
+        <!-- <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+          <a mat-list-item href="...">Submenu Item 1</a>
+          <a mat-list-item href="...">Submenu Item 2</a>
+          <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+            <span class="full-width" *ngIf="isExpanded || isShowing">Nested Menu</span>
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+          </mat-list-item>
+          <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+            <mat-list-item>SubSubmenu Item 1</mat-list-item>
+            <mat-list-item>SubSubmenu Item 2</mat-list-item>
+          </div> 
+        </div>-->
+      </mat-nav-list>
+      <mat-nav-list>
+    </mat-nav-list>
+    </mat-sidenav>
+    
+    <router-outlet></router-outlet>
+      
+    <div class=" setting_wrap"  (click)="open()" > 
+      <mat-icon  >list</mat-icon>
+  </div>
+    <!-- <app-footer ></app-footer>   -->
+   
+  </mat-sidenav-container>
+  

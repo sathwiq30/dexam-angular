@@ -1,0 +1,66 @@
+<div style="overflow-x: hidden;">
+     
+  <br>
+     <div class="row"  > 
+         <mat-card class="col-10 col-md-8 ml-5 ml-md-0 ml-md-5 mr-2  " style="min-height: 87vh;border-radius: 12px;">
+          <h2 class="page-title">users List</h2> <br><br>
+          <div *ngFor="let item of   data ">
+            <div *ngIf="item._id !== uid " > 
+              <button *ngIf=" item.blocked "  class="btn  btn-success" (click)="activate(item._id)"   style="float: right; "> Activate</button>
+              <button *ngIf=" !item.blocked " class="btn btn-danger" (click)="deactivate(item._id)"   style="float: right; "> Deactivate</button>
+              <p >Name :  {{item.name  }}  </p>
+              <p> Email : {{item.email}}</p>
+              <p> Job : {{item.job}}</p>
+              <p> Contact : {{item.contact}}</p>
+            </div>
+        
+           
+            <!-- {{item | json}} -->
+            <hr>
+          </div>
+        </mat-card>
+        <mat-card  class="col-10 col-md-3 ml-5 ml-md-0  mt-5 mt-md-0 "  style="height: 87vh;border-radius: 12px; ">     
+          <h3>Add users</h3> 
+          <form (submit)="onAddSubjects(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="font-size: smaller;">
+            <mat-form-field   appearance="outline" >
+              <mat-label>Roles</mat-label>
+              <mat-select name="role" ngModel   #GendrInput="ngModel"  required> 
+                <mat-option     value ="SuperUser"  >SuperUser </mat-option> 
+                <mat-option     value ="Admin"  > Admin</mat-option> 
+                <mat-option     value ="Analyst"  >Analyst </mat-option> 
+                <mat-option     value ="Finance"  > Finance</mat-option> 
+  
+              </mat-select>
+              <mat-error *ngIf="GendrInput.invalid">Please select a Role.</mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field  appearance="outline"><mat-label>Email</mat-label>
+              <input matInput name="email"  maxlength="320" minlength="6" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" [email]="true" required email>
+              <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+            </mat-form-field>
+
+            
+              <mat-form-field  appearance="outline"><mat-label>User Name</mat-label>
+                  <input matInput name="user"  maxlength="200" minlength="4" ngModel type="text" placeholder="User Name" #nameInput="ngModel"  required >
+                  <mat-error *ngIf="nameInput.invalid">Please enter a valid user name.</mat-error>
+                </mat-form-field> 
+
+                <mat-form-field  appearance="outline"><mat-label>Phone Number</mat-label>
+                  <input matInput name="number" [disabled]="ph"  maxlength="12" minlength="10" ngModel type="number" placeholder="Phone number" #phoneInput="ngModel"  required number>
+                  <mat-error *ngIf="phoneInput.invalid">Please enter a valid phone number.</mat-error>
+                </mat-form-field> 
+              <br><br> 
+              <button mat-raised-button  color="primary"
+               type="submit" style="color: black; background-color:rgba(3, 94, 230, 0.52) !important;"  >Submit</button>
+
+            </form>  
+
+         </mat-card> 
+    </div>
+    <br>
+
+</div>
+
+
+ 

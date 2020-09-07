@@ -1,0 +1,46 @@
+<div class="container-fluid bgi">
+    <div class="row">
+        <div class="col-10  m-auto col-md-9 ">
+          <h1 style="text-align: start;">Our</h1>
+          <p style="text-align: start;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos sapiente corporis ?</p>
+        </div>
+
+        <div class="noe col-md-3">
+          <br><br>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col-3">
+              <img (click)="prev.click()"  style="width: 50px;cursor: pointer;" src="../../assets/arrow-long-2.png" alt="">
+    
+            </div>
+            <div class="col-3">
+              <img (click)="prev2.click()" style="width: 50px;cursor: pointer;"  src="../../assets/arrow-long-1@2x.png" alt="">
+    
+            </div>
+          </div> 
+        </div>
+      </div>
+      <br><br><br> 
+      <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+        <ngu-tile  *nguCarouselDef="let item; let i = index; let ani = animate"> 
+            <!-- [@slider]="ani" PLease this animation to this tile to see animation. stackblitz have error with animations -->
+            <div class=" hov">
+                <mat-card class="p-0"   style="background-color:  #43425D ; z-index: 2; box-shadow: none; border-bottom-right-radius: 0;  border-bottom-left-radius: 0; ">
+                   <br><br><br><br><br><br><br><br><br>
+                </mat-card>
+                <mat-card    style="background-color:  rgba(3, 94, 230, 0.52) ;color: white;  border-top-right-radius: 0;  border-top-left-radius: 0;">
+                    English
+                    <p style="font-size: small;">Mon-Fri 9.00AM - 10AM</p>
+                </mat-card>
+            </div> 
+        </ngu-tile>
+              <div style="display: none;">
+                  
+        <button  class="leftRs" #prev NguCarouselPrev  >&lt;</button>
+        <button  class="rightRs"#prev2 NguCarouselNext >&gt;</button>
+      
+          </div>
+     
+      </ngu-carousel>
+</div>
+<br><br><br><br>

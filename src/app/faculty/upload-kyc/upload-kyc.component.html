@@ -1,0 +1,179 @@
+<mat-card class="col-10 ml-5 mt-5">
+  <h2>Submit Files</h2>
+  <form   [formGroup]="thirdFormGroup">
+  
+    <div class="row">
+      <div class="col-11 col-md-6">
+        <mat-form-field   appearance="outline">
+          <mat-label>Degree</mat-label>
+          <mat-select formControlName="degree"      required>
+            
+            <mat-option value="DSC">DSC</mat-option>
+            <mat-option value="PET">PET</mat-option>
+            <mat-option value="BED">BED</mat-option>
+            <mat-option value="BTECH">BTECH</mat-option>
+            <mat-option value="MTECH">MTECH</mat-option>
+            <mat-option value="MSC">MSC</mat-option> 
+          </mat-select>
+          <mat-error  >Please enter a valid Degree.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-11 col-md-6" *ngIf="!reverify">
+
+        <mat-form-field  appearance="outline"><mat-label>Description</mat-label>
+          <textarea matInput formControlName="description"  maxlength="200" minlength="4" 
+            type="text" placeholder="Short Description"  [required]="!reverify" ></textarea>
+          <mat-error  >Please enter a Short Description.</mat-error>
+        </mat-form-field> 
+      </div>
+      <div class="col-11 col-md-6">
+        <mat-form-field  appearance="outline"><mat-label>Address</mat-label>
+          <textarea matInput formControlName="address"  maxlength="200" minlength="4" 
+            type="text" placeholder="Address"  required ></textarea>
+          <mat-error  >Please enter Address.</mat-error>
+        </mat-form-field> 
+      </div>
+      <div class="col-11 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Profession</mat-label>
+          <input matInput formControlName="profession" placeholder="profession"
+                 required>
+                 <mat-error  >Please enter Profession.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-11 col-md-6">
+        <br>
+        <a (click)="aadharPicker.click()" mat-raised-button *ngIf=" !previewUrl " style="cursor: pointer;">
+          Aadhar Card
+          <mat-icon aria-hidden="false"  style="float: right;" aria-label="Example home icon">cloud_upload</mat-icon>
+        </a>
+        <div  *ngIf="previewUrl">  
+          Aadhar Card
+          <div *ngFor='let image of images;let i = index'>
+            <!-- <img style="border-radius: .5vw;" width="200px" [src]="image"  > -->
+            
+            <a   mat-raised-button style="cursor: pointer;">
+              <mat-icon aria-hidden="false"  aria-label="Example home icon"> check_circle</mat-icon>
+              Aadhar Card
+              <a (click)="onRemove(i)" style="cursor: pointer;float: right;">
+                <mat-icon aria-hidden="false"  *ngIf="previewUrl" aria-label="Example home icon">clear</mat-icon>
+            </a>
+            </a>
+            
+          </div>
+        </div>
+        <br>
+      </div>
+      <div class="col-11 col-md-6"><br>
+        <a (click)="hdPicker.click()" mat-raised-button *ngIf=" !previewUrlHd " style="cursor: pointer;">
+          Degree Certificate
+          <mat-icon aria-hidden="false" style="float: right;"  aria-label="Example home icon">cloud_upload</mat-icon>
+         </a> 
+   
+         
+         <div  *ngIf="previewUrlHd">
+           <a    mat-raised-button style="cursor: pointer;">
+             <mat-icon aria-hidden="false"  aria-label="Example home icon"> check_circle</mat-icon>
+   
+             Degree Certificate
+             <a (click)="onRemoveHd(0)" style="cursor: pointer;float: right;">
+               <mat-icon aria-hidden="false"  *ngIf="previewUrlHd" aria-label="Example home icon">clear</mat-icon>
+           </a>
+            </a>
+           <!-- <div *ngFor='let image of imagesId;let i = index'>
+             <img style="border-radius: .5vw;" width="200px" [src]="image"  >
+             <a (click)="onRemoveId(i)" style="cursor: pointer;">
+                 <mat-icon aria-hidden="false"  *ngIf="previewUrlId" aria-label="Example home icon">clear</mat-icon>
+             </a>
+           </div> -->
+         </div><br>
+      </div>
+      <div class="col-11 col-md-6"><br>
+        <a (click)="idPicker.click()" mat-raised-button *ngIf=" !previewUrlId " style="cursor: pointer;">
+          Id Card
+          <mat-icon aria-hidden="false" style="float: right;"  aria-label="Example home icon">cloud_upload</mat-icon>
+         </a> 
+   
+         
+         <div  *ngIf="previewUrlId">
+           <a    mat-raised-button style="cursor: pointer;">
+             <mat-icon aria-hidden="false"  aria-label="Example home icon"> check_circle</mat-icon>
+   
+             Id Card 
+             <a (click)="onRemoveId(0)" style="cursor: pointer;float: right;">
+               <mat-icon aria-hidden="false"  *ngIf="previewUrlId" aria-label="Example home icon">clear</mat-icon>
+           </a>
+            </a>
+           <!-- <div *ngFor='let image of imagesId;let i = index'>
+             <img style="border-radius: .5vw;" width="200px" [src]="image"  >
+             <a (click)="onRemoveId(i)" style="cursor: pointer;">
+                 <mat-icon aria-hidden="false"  *ngIf="previewUrlId" aria-label="Example home icon">clear</mat-icon>
+             </a>
+           </div> -->
+         </div><br>
+      </div>
+      <div class="col-11 col-md-6"  *ngIf="!reverify"><br>
+        <a (click)="dpPicker.click()" mat-raised-button *ngIf=" !previewUrlDp " style="cursor: pointer;">
+          Display Picture
+          <mat-icon aria-hidden="false" style="float: right;"  aria-label="Example home icon">cloud_upload</mat-icon>
+         </a> 
+     
+         
+         <div  *ngIf="previewUrlDp"><br>
+           <a    mat-raised-button style="cursor: pointer;">
+             <mat-icon aria-hidden="false"  aria-label="Example home icon"> check_circle</mat-icon>
+     
+            Display Picture
+             <a (click)="onRemoveDp(0)" style="cursor: pointer;float: right;">
+               <mat-icon aria-hidden="false"  *ngIf="previewUrlDp" aria-label="Example home icon">clear</mat-icon>
+           </a>
+            </a>
+           <!-- <div *ngFor='let image of imagesId;let i = index'>
+             <img style="border-radius: .5vw;" width="200px" [src]="image"  >
+             <a (click)="onRemoveId(i)" style="cursor: pointer;">
+                 <mat-icon aria-hidden="false"  *ngIf="previewUrlId" aria-label="Example home icon">clear</mat-icon>
+             </a>
+           </div> -->
+         </div><br>
+      </div>
+      <div class="col-11 col-md-6"  *ngIf="!reverify"><br>
+        <a (click)="demoPicker.click()" mat-raised-button *ngIf=" !previewUrlVD " style="cursor: pointer;">
+          Demo video 
+           <mat-icon aria-hidden="false" style="float: right;" aria-label="Example home icon">cloud_upload</mat-icon>
+         </a>
+         <div  *ngIf="previewUrlVD">  
+           <a   mat-raised-button style="cursor: pointer;">
+             <mat-icon aria-hidden="false"  aria-label="Example home icon">check_circle</mat-icon>
+     
+             Demo video 
+             <a (click)="onRemoveVd(0)" style="cursor: pointer;float: right;">
+               <mat-icon aria-hidden="false"  *ngIf="previewUrlVD" aria-label="Example home icon">clear</mat-icon>
+           </a> 
+            </a>    
+             <!-- <video  style="border-radius: .5vw;" [src]="videoUrl" width="200px" ></video> -->
+             
+         </div><br>
+      </div>
+    </div>
+  
+
+ 
+ {{msg}}
+ <br>
+    <div> 
+      <button mat-raised-button style="background-color: rgba(3, 94, 230, 0.52) !important;" (click)="onSumbit()"  
+       *ngIf="!reverify" >submit</button>
+      <button mat-raised-button   *ngIf=" reverify"
+       style="background-color: rgba(3, 94, 230, 0.52) !important;" (click)="onSumbitReverify()" 
+        >re submit</button>
+    </div>
+  </form>
+
+</mat-card>
+
+  <input type="file" #aadharPicker (change)="onImagePicked($event)">
+  <input type="file" #idPicker (change)="onImagePickedId($event)">
+  <input type="file" #demoPicker (change)="onVedioPickedId($event)">
+  <input type="file" #hdPicker (change)="onImagePickedHd($event)">
+  <input type="file" #dpPicker (change)="onImagePickedDp($event)">
+                                                                                         

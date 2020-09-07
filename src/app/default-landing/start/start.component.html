@@ -1,0 +1,35 @@
+
+<!-- <div    class="p-0" style="height: 70vh !important; overflow-x: hidden;">
+    <div class="row p-0"  >
+        <div  class="col-12 col-md-8 p-0 small" style=" height: 70vh; background-color: rgba(3, 94, 230, 0.52);">
+          <img src="../../../assets/side.PNG" style="width: inherit;padding: 0; " alt="">
+        </div>
+        <div class="col-10 col-md-3 m-auto p-0">
+            <img src="./../../../assets/Capture.PNG" style="height: 20vh; width: inherit;" alt=""> 
+             <app-signin></app-signin> 
+             <br><br>
+        </div>
+    </div>
+</div> -->
+
+<div    class="p-0">
+    <div class="row p-0"  >
+        <div  class="col-12 col-sm-6 col-md-6 col-lg-8 p-0 small" style="background-color: rgba(3, 94, 230, 0.52);">
+          <img src="../../../assets/side.PNG" style="width: inherit;padding: 0;  " alt="">
+        </div>
+        <div class="col-12 col-sm-6 col-md-5 col-lg-3 p-0">
+            <img src="./../../../assets/Capture.PNG" style="height: 30vh; width: inherit;"  alt=""> 
+            <div class="row " style="overflow-x: hidden;">
+                <div class="col-5 ml-3">
+                    <img [routerLink]="['/auth/s/signin']" routerLinkActive="router-link-active"  (click)="openDialog()"  style="width: inherit; margin-left: 10px;"  src="../../../assets/student.PNG">
+                    <p style="width: inherit; height: 30vh; margin-left: 10px;text-align: center;">Student</p>
+                </div> 
+                <div class="col-5  ">
+                    <img [routerLink]="['/auth/signin']" routerLinkActive="router-link-active"   (click)="openDialog()"  style="width: inherit; margin-left: 10px;cursor: pointer;"
+                     src="../../../assets/teacher.PNG">
+                    <p style="width: inherit; margin-left: 10px; text-align: center;" >Teacher</p>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>

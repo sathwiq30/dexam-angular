@@ -1,0 +1,48 @@
+<app-loading *ngIf=" isLoading" ></app-loading>
+<div style=" min-height: 100vh;  " >
+    
+<div *ngIf=" rekyc ||  !f ;else submitted"> 
+    <app-profile *ngIf="!isLoading"  [reverify]="rekyc"></app-profile>
+</div>
+
+
+<ng-template #submitted>
+    <div *ngIf ="isVerified;else not" >
+        <div   *ngIf="!isLoading">
+            <mat-card  class="m-2 m-lg-5  " style="background-color: rgb(255, 255, 255);">
+                <h3 class="ml-4">On going Courses</h3 >
+                   
+            </mat-card>
+        
+            <mat-card  class="m-2 m-lg-5  " style="background-color: rgb(255, 255, 255);">
+                <h3 class="ml-4">My Courses</h3 >
+                  
+                
+            </mat-card>
+        
+        </div>
+         
+        
+    </div>
+</ng-template>
+
+
+<ng-template #not>
+  <div  *ngIf="!isLoading">
+    <br><br><br><br><br> <br><br> <br><br>
+    <div class="row p-0 m-0">
+        <mat-card class="col-6 col-md-6 m-auto bg">
+            <br><br><br>
+            <h3  > Not Verified </h3>
+            <br>
+            <span>
+                your KYC verification will be completed by third party vendor and we will notify you once the verification is done</span>
+        </mat-card>
+    </div>
+  </div>
+</ng-template> 
+
+
+
+
+</div>

@@ -1,0 +1,34 @@
+<div id="navbar">
+  <mat-toolbar  color="primary" class="toolColor sticky  ">
+  
+    <span >
+      <a mat-button routerLink="/" routerLinkActive="active">Namaste Guru</a>
+    </span>
+    <div class="dis">
+      <span style="margin-left: 10vw;">
+        <a mat-button  routerLink="/faculty/add" routerLinkActive="active">Add Courses</a>
+      </span> 
+      <span style="margin-left: 10vw;">
+        <a mat-button  routerLink="/faculty/mycourses" routerLinkActive="active">My Courses</a>
+      </span> 
+    </div>
+    <span class="example-fill-remaining-space"></span>
+    <div class="dis">
+      <div style="margin-right: 10vw;">
+        <button mat-button [matMenuTriggerFor]="menu">{{name}}</button>
+        <mat-menu #menu="matMenu">
+          <button routerLink="/faculty/profile" mat-menu-item>My Account</button>
+          <button mat-menu-item>My Courses</button>
+          <button  routerLink="/faculty/changepassword" mat-menu-item>Change Password</button>
+          <button mat-menu-item>My Wallet</button>
+          <button mat-menu-item (click)="logout.emit(true)" >Logout</button>
+        </mat-menu>
+      </div>
+    </div>
+    <button class="smallscreen" mat-button (click)="open.emit(true)">
+      <mat-icon>list</mat-icon>
+    </button>
+  </mat-toolbar> 
+      
+</div>
+<br> <br> 

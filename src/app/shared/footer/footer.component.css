@@ -1,0 +1,16 @@
+*{
+   
+    color: rgb(255, 255, 255); 
+}
+a{
+    color: #B2DFDB
+    ;
+}
+ 
+ 
+@media (max-width : 500px){
+    .waves{
+        height: 50px; 
+    }
+  }
+  

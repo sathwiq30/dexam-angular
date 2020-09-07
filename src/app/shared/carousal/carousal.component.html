@@ -1,0 +1,23 @@
+<div class="container">
+    <br><br>
+    <div class="abs">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide  *ngFor="let s of carousel" class="col-12 mb-3 ml-auto mr-auto col-md-2 s" >
+            <br>
+            <mat-card  class="s" routerLink="/student/course"
+              style="cursor: pointer;margin-right: 1vw"
+              > 
+                <img  
+    src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" 
+    alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <br>
+                   <h1> {{s }} </h1> 
+                </mat-card-content>
+            </mat-card>  
+            <br>
+        </ng-template>
+        <br>
+      </owl-carousel-o>
+    </div>
+</div>

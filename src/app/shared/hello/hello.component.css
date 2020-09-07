@@ -1,0 +1,22 @@
+.container-fluid{
+    padding-left: 10vw !important;
+
+}
+.bgi{ 
+    background-repeat: no-repeat;
+    background-position: right top;
+  background-size: 40vw 80vh;
+    background-image: 
+    url( 'https://firebasestorage.googleapis.com/v0/b/homemade-de936.appspot.com/o/Component%2032%20%E2%80%93%201.png?alt=media&token=ebdf6c0d-8e34-4530-aaca-e3d358f60183')
+}
+.tile  {
+    background-color: rgb(255, 255, 255);
+     
+}
+
+@media (max-width : 500px){
+    .noe{
+        display: none;
+    }
+}
+

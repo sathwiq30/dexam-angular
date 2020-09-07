@@ -1,0 +1,240 @@
+<div style="overflow-x: hidden;">
+     
+  <br>
+     <div class="row"  > 
+         <mat-card class="col-10 col-md-8 ml-5 ml-md-0 ml-md-5 mr-2  " style="min-height: 87vh;border-radius: 12px;">
+          <h2 class="page-title">Existing</h2> 
+          <br><br> 
+          <div  *ngIf="!which ">
+            choose something
+          </div>
+          <div  *ngIf="which ==  'slots'">
+            <h3>  slots</h3>
+            <div  *ngIf="!standard ">
+              choose  a slot
+            </div>
+            <div  *ngIf="standard ==  'weekend'">  
+              <p *ngFor="let item of   data.weekend"> {{item.name}}</p>
+            </div>
+            <div  *ngIf="standard ==  'weekday'">  
+               <p *ngFor="let item of   data.weekday"> {{item.name}}</p>
+            </div>
+          </div>
+
+          <div *ngIf="which ==  'classes'"> 
+            <h3>  classes</h3>
+            <p *ngFor="let item of   data.classes"> {{item.class}}</p>
+          </div>
+
+          <div *ngIf="which ==  'Subjects'">
+            <h3>  Subjects</h3> 
+            <div  *ngIf="selected >-1">
+               
+              <p *ngFor="let item of  classes[selected].subject"> {{item.name}}</p>
+    
+            </div>
+          </div>
+
+          <div  *ngIf="which ==  'Query'">
+            <h3>  Help Center Query</h3>
+ 
+            <p *ngFor="let item of   data.questions"> {{item }}</p>
+          </div>
+
+          <div   *ngIf="which ==  'Medium'">
+            <h3>  Medium Language</h3>
+            <p *ngFor="let item of   data.medium"> {{item }}</p>
+          </div>
+
+          <div  *ngIf ="which ==  'standard'" > 
+            <h3>  Standard</h3>
+            <p *ngFor="let item of   data.standard"> {{item }}</p>
+          </div>
+          
+        </mat-card>
+        <mat-card  class="col-10 col-md-3 ml-5 ml-md-0  mt-5 mt-md-0 "  style="min-height: 87vh;border-radius: 12px; ">     
+         <h1>Manage</h1>
+         <br> 
+         <mat-form-field   appearance="outline"  >
+          <mat-label>data type</mat-label>
+          <mat-select name="dt" ngModel   #dataInput="ngModel"  required>
+            <mat-option value="slots" (click)="which=  'slots'">slots</mat-option>
+            <mat-option  value="slots" (click)="which=  'classes'">classes</mat-option>
+            <mat-option value="slots" (click)="which=  'Subjects'">Subjects</mat-option>
+            <mat-option value="slots" (click)="which=  'Query'"> Help Center Query</mat-option> 
+            <mat-option value="slots" (click)="which=  'Medium'">Medium</mat-option> 
+            <mat-option value="standard" (click)="which=  'standard'" >standard</mat-option>
+          </mat-select>
+          <mat-error *ngIf="dataInput.invalid">Please select a data Type.</mat-error>
+      
+        </mat-form-field><br> 
+
+ 
+        <hr>
+          <div  *ngIf="which ==  'slots'">
+            <h3>Add slots</h3>
+            <form (submit)="onAddSlots(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="font-size: smaller;">
+              <mat-form-field   appearance="outline"  >
+                <mat-label>Slot Type</mat-label>
+                <mat-select name="type" ngModel   #GenderInput="ngModel"  required> 
+                  <mat-option value="weekday" (click)="standard=  'weekday'"  >weekday</mat-option>
+                  <mat-option value="weekend" (click)="standard=  'weekend'">Weekend</mat-option>
+                  <mat-option value="specialclasses" >special classes</mat-option> 
+                </mat-select>
+                <mat-error *ngIf="GenderInput.invalid">Please select a Slot Type.</mat-error>
+            
+              </mat-form-field><br> 
+
+
+                <mat-form-field  appearance="outline" >
+                  
+                  <mat-label>Name</mat-label><span matPrefix> <mat-icon></mat-icon></span>
+                  <input matInput name="name"  maxlength="320" minlength="1" ngModel type="text" placeholder="Ex : 6-7AM"
+                  #emailInput="ngModel"  required  >
+                  <mat-error *ngIf="emailInput.invalid">Please enter a valid slot.</mat-error>
+                </mat-form-field> 
+                <p     >start and end are in 24 hour format </p>
+                <mat-form-field  appearance="outline"  >
+                  
+                  <mat-label>Start</mat-label><span matPrefix> <mat-icon></mat-icon></span>
+                  <input matInput name="start"  maxlength="320" minlength="1" ngModel type="number" placeholder="Ex : 6"
+                  #emInput="ngModel"  required  >
+                  <mat-error *ngIf="emInput.invalid">Please enter a valid start.</mat-error>
+                </mat-form-field> 
+                <mat-form-field  appearance="outline" >
+                  
+                  <mat-label>End</mat-label><span matPrefix> <mat-icon></mat-icon></span>
+                  <input matInput name="end"  maxlength="320" minlength="1" ngModel type="number" placeholder="Ex : 7"
+                  #eInput="ngModel"  required  >
+                  <mat-error *ngIf="eInput.invalid">Please enter a valid end.</mat-error>
+                </mat-form-field> 
+                <br><br>
+
+
+                <button mat-raised-button  color="primary"
+                type="submit" style="color: black; background-color:rgba(3, 94, 230, 0.52) !important;"  >Submit</button>
+              </form> 
+          </div>
+
+          <div *ngIf="which ==  'classes'"> 
+            <h3>Add classes</h3>
+            <form (submit)="onAddClass(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="font-size: smaller;">
+                <mat-form-field  appearance="outline">
+                  
+                  <mat-label>subject</mat-label><span matPrefix> <mat-icon></mat-icon></span>
+                  <input matInput name="email"  maxlength="320" minlength="2" ngModel type="text" placeholder="subject"
+                   #emailInput="ngModel"  required  >
+                  <mat-error *ngIf="emailInput.invalid">Please enter a valid subject.</mat-error>
+                </mat-form-field> 
+                <br><br> 
+                <button mat-raised-button  color="primary"
+                 type="submit" style="color: black; background-color:rgba(3, 94, 230, 0.52) !important;"  >Submit</button>
+              </form> 
+          </div>
+
+
+          <div  *ngIf ="which ==  'standard'" > 
+            <h3>Add Standard</h3>
+            <form (submit)="onAddSt(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="font-size: smaller;">
+               
+                <mat-form-field  appearance="outline"  >
+                          
+                  <mat-label>Standard Name</mat-label><span matPrefix> <mat-icon></mat-icon></span>
+                  <input matInput name="name"  maxlength="320" minlength="1" ngModel type="text" placeholder="standard name"
+                  #stInput="ngModel"  required  >
+                  <mat-error *ngIf="stInput.invalid">Please enter a valid standard name.</mat-error>
+                </mat-form-field> 
+
+                <br><br> 
+                <button mat-raised-button  color="primary"
+                 type="submit" style="color: black; background-color:rgba(3, 94, 230, 0.52) !important;"  >Submit</button>
+              </form> 
+          </div>
+
+          
+
+          <div *ngIf="which ==  'Subjects'">
+            <h3>Add Subjects</h3> 
+            <form (submit)="onAddSubjects(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="font-size: smaller;">
+              <mat-form-field   appearance="outline"  >
+                <mat-label>Class</mat-label>
+                <mat-select name="type" ngModel   #GendrInput="ngModel"  required>
+                  
+                  <mat-option *ngFor="let item of classes;let i = index" (click)="selected= i " [value]="i"  >
+                    {{item.class}}</mat-option> 
+      
+                </mat-select>
+                <mat-error *ngIf="GendrInput.invalid">Please select a Slot Type.</mat-error>
+      
+              </mat-form-field>
+             
+              <!-- <div  *ngIf="selected">
+                Subjects   are :
+                <p *ngFor="let item of  classes[GendrInput.value].subject"> {{item.name}}</p>
+      
+              </div> -->
+              <hr>
+                <mat-form-field  appearance="outline"> 
+                <mat-label>Name</mat-label><span matPrefix> <mat-icon></mat-icon></span>
+                  <input matInput name="email"  maxlength="320" minlength="2" ngModel type="text" placeholder="subject"
+                   #emailInput="ngModel"  required  >
+                  <mat-error *ngIf="emailInput.invalid">Please enter a valid subject.</mat-error>
+                </mat-form-field> 
+                <br><br>  
+                <mat-form-field  appearance="outline">
+                <mat-label>price</mat-label><span matPrefix> <mat-icon></mat-icon></span>
+                  <input matInput name="price"  maxlength="320" minlength="2" ngModel type="text" placeholder="price"
+                   #emailInput="ngModel"  required  >
+                  <mat-error *ngIf="emailInput.invalid">Please enter a valid price.</mat-error>
+                </mat-form-field>  
+                
+                 <mat-checkbox  name="pre" ngModel #pInput="ngModel" >Premium</mat-checkbox>
+                 <br><br> 
+                <button mat-raised-button  color="primary"
+                 type="submit" style="color: black; background-color:rgba(3, 94, 230, 0.52) !important;"  >Submit</button>
+      
+              </form>  
+          </div>
+
+          <div  *ngIf="which ==  'Query'">
+            <h3>Add Help Center Query</h3>
+            <form (submit)="onAddQ(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="font-size: smaller;">
+              
+                <mat-form-field  appearance="outline">
+                  
+                  <mat-label>Query</mat-label><span matPrefix> <mat-icon></mat-icon></span>
+                  <input matInput name="name"  maxlength="320" minlength="1" ngModel type="text" placeholder="Query"
+                   #emailInput="ngModel"  required  >
+                  <mat-error *ngIf="emailInput.invalid">Please enter a valid Query.</mat-error>
+                </mat-form-field> 
+                 <br> 
+        
+                <button mat-raised-button  color="primary"
+                 type="submit" style="color: black; background-color:rgba(3, 94, 230, 0.52) !important;"  >Submit</button>
+              </form> 
+
+          </div>
+
+          <div   *ngIf="which ==  'Medium'">
+            <h3>Add Medium Language</h3>
+            <form (submit)="onAddM(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="font-size: smaller;">
+              
+                <mat-form-field  appearance="outline">
+                  
+                  <mat-label>Name</mat-label><span matPrefix> <mat-icon></mat-icon></span>
+                  <input matInput name="name"  maxlength="320" minlength="1" ngModel type="text" placeholder="medium"
+                   #emailInput="ngModel"  required  >
+                  <mat-error *ngIf="emailInput.invalid">Please enter a valid medium.</mat-error>
+                </mat-form-field> 
+                 <br> 
+          
+                <button mat-raised-button  color="primary"
+                 type="submit" style="color: black; background-color:rgba(3, 94, 230, 0.52) !important;"  >Submit</button>
+              </form> 
+          </div>
+         </mat-card> 
+    </div>
+    <br>
+
+</div>
+ 

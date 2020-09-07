@@ -1,0 +1,258 @@
+<div class="row">
+    <mat-card  class="col-11   m-5      "  style="min-height: 90vh;border-radius: 12px; " *ngIf="!isLoading">     
+        <h1>User Details</h1>
+        <div *ngIf="! user.kycverified ;else verified">
+            <button class="btn btn-danger" (click)="reject()"   style="float: right; "> Reject</button>
+            <button *ngIf=" user.rekyc "  class="btn  btn-success" (click)="accept()"   style="float: right; "> Approve</button>
+            
+        </div>
+        <ng-template  #verified>
+          <button *ngIf=" user.blocked "  class="btn  btn-success" (click)="activate()"   style="float: right; "> Activate</button>
+          <button *ngIf=" !user.blocked " class="btn btn-danger" (click)="deactivate()"   style="float: right; "> Deactivate</button>
+
+        </ng-template>
+        <br><br> 
+        <img [src]="user.display_pic" height="100px" style="border-radius: 50%;" width="100px" alt="display_pic">
+        <p>{{user.name}}</p>
+        <p>{{user.email}}</p>
+        
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs  ">
+          <mat-tab label="Personal Details">
+            <button class="  m-2 " mat-icon-button (click)=" edit=!edit"   style="float: right; "> <mat-icon>edit</mat-icon></button>
+            <!-- <div >
+                <p>{{user.name}}</p>
+                <p>{{user.email}}</p>
+                <p>current address: {{user.current_address}} </p>
+                <p>contact:  {{user.contact}}</p>
+                <p>Short Description:  {{user.short_profile_description}}</p>
+                <p>gender:  {{user.gender}}</p>
+          
+            </div > -->
+            <div class="row p-0" >
+                <div class="col-10 p-0 col-md-8 m-auto "  >
+                    <br><br>
+                <mat-form-field  appearance="outline">
+                    <mat-label>User Name</mat-label>
+                    <input matInput name="name" maxlength="200" minlength="4"  [(ngModel)]="user.name" [disabled]=" edit" 
+                     type="text" placeholder="User Name"    #nameInput="ngModel" >
+                    <mat-error  *ngIf="nameInput.invalid">Please enter a valid user name.</mat-error>
+                  </mat-form-field>
+                  <mat-form-field  appearance="outline"><mat-label>Email</mat-label>
+                    <input matInput name="email"  maxlength="320" minlength="6"   [(ngModel)]="user.email"[disabled]=" edit" 
+                    type="email" placeholder="E-Mail"  [email]="true" #emailInput="ngModel" email>
+                    <mat-error *ngIf="emailInput.invalid" >Please enter a valid email.</mat-error>
+                  </mat-form-field> 
+                  <mat-form-field  appearance="outline"><mat-label>Phone Number</mat-label>
+                    <input matInput    maxlength="12" name="phone"  [(ngModel)]="user.contact" [disabled]=" edit" 
+                     minlength="10"   type="number" placeholder="Phone number"   #numberInput="ngModel" number>
+                    <mat-error  *ngIf="numberInput.invalid">Please enter a valid phone number.</mat-error>
+                  </mat-form-field> 
+      
+       
+                  <mat-form-field  appearance="outline"><mat-label>Description</mat-label>
+                    <textarea matInput name="description"   maxlength="200" minlength="4" [disabled]=" edit"  [(ngModel)]="user.short_profile_description"
+                      type="text" placeholder="Short Description"  #dInput="ngModel" ></textarea>
+                    <mat-error  *ngIf="dInput.invalid">Please enter a Short Description.</mat-error>
+                  </mat-form-field>  
+                  <mat-form-field  appearance="outline"><mat-label>Address</mat-label>
+                    <textarea matInput name="address" ngModel  maxlength="200" minlength="4" [disabled]=" edit"   [(ngModel)]="user.current_address"
+                      type="text" placeholder="Address" #addInput="ngModel" ></textarea>
+                    <mat-error  *ngIf="addInput.invalid">Please enter Address.</mat-error>
+                  </mat-form-field> 
+                  <mat-form-field   appearance="outline" style="width: 50%;">
+                    <mat-label>Gender</mat-label>
+                    <mat-select name="gender"  [(ngModel)]="user.gender"   #GenderInput="ngModel" [disabled]=" edit"  required>
+                      
+                      <mat-option value="Male">Male</mat-option>
+                      <mat-option value="Female">Female</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="GenderInput.invalid">Please select a Gender.</mat-error>
+                  </mat-form-field><br>
+            </div>
+        </div>
+ 
+          </mat-tab>
+
+
+          <mat-tab label="Proffessional Details"> 
+            <button class="  m-2 " mat-icon-button (click)=" edit=!edit"   style="float: right; "> <mat-icon>edit</mat-icon></button>
+            <p>degree:  {{user.degree}}</p>
+            <p>profession:  {{user.profession}}</p> 
+
+            <mat-form-field   appearance="outline">
+                <mat-label>Degree</mat-label>
+                <mat-select name="degree"   #dInput="ngModel"  [disabled]=" edit"     [(ngModel)]="user.degree">
+                  
+                  <mat-option value="DSC">DSC</mat-option>
+                  <mat-option value="PET">PET</mat-option>
+                  <mat-option value="BED">BED</mat-option>
+                  <mat-option value="BTECH">BTECH</mat-option>
+                  <mat-option value="MTECH">MTECH</mat-option>
+                  <mat-option value="MSC">MSC</mat-option> 
+                </mat-select>
+                <mat-error   *ngIf="dInput.invalid">Please enter a valid Degree.</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Profession</mat-label>
+                <input matInput name="profession" placeholder="profession" [disabled]=" edit" 
+                #pInput="ngModel"      [(ngModel)]="user.profession">
+                       <mat-error   *ngIf="pInput.invalid">Please enter Profession.</mat-error>
+              </mat-form-field>
+
+          </mat-tab>
+
+          <mat-tab label="   Enrollment "> 
+            <button class="  m-2 " mat-icon-button (click)=" edit=!edit"   style="float: right; "> <mat-icon>edit</mat-icon></button>
+            <br><br>
+            <form  (submit)="onAdd(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" style="overflow-x: hidden;">
+                <div class="row p-0" >
+                  <div class="col-10 p-0 col-md-8 m-auto "  >
+                     
+ 
+                     <mat-form-field *ngIf="!isLoading2" >
+                       <mat-label>Duration</mat-label>
+                       <mat-select [name]="'duration'" [(ngModel)]="user.duration"  [disabled]=" edit" 
+                          #durationInput="ngModel"   >
+                         <mat-option value="Weekly">Weekly</mat-option>
+                         <mat-option value="15Days">15Days</mat-option>
+                         <mat-option value="Monthly">Monthly</mat-option>
+                         <mat-option value="3Months">3Months</mat-option>
+                         <mat-option value="6Months">6Months</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf="durationInput.invalid">Please select a Duration.</mat-error>
+                     </mat-form-field><br>
+                     
+                     <!-- <mat-form-field  >
+                       <mat-label>Standard</mat-label>
+                       <mat-select [name]="'standard'"  [(ngModel)]="user.standard" [disabled]=" edit"   multiple  #standardInput="ngModel"   >
+                         
+                         <mat-option (click)="state= !state" ng-selected="true" value="STATE">State</mat-option>
+                         <mat-option value="ICSE" selected  >Icse</mat-option>
+                         <mat-option value="CBSE">Cbse</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf="standardInput.invalid">Please select a Standard.</mat-error>
+                     </mat-form-field><br> -->
+                     Standard
+                     <div *ngFor="let item of user.standard">
+                        <span>{{item}} </span>
+                        <a mat-icon-button (click)="delete('Standard','standard',item)"><mat-icon> delete</mat-icon></a>
+                     </div><br>
+                     Medium
+                     <div *ngFor="let item of user.medium">
+                        <span>{{item}} </span>
+                        <a mat-icon-button (click)="delete('Medium','medium',item)"><mat-icon> delete</mat-icon></a>
+                     </div><br>
+                    <!-- <mat-form-field  >
+                      <mat-label>Medium</mat-label>
+                      <mat-select [name]="'medium' "    [(ngModel)]="user.medium"   [disabled]=" edit"   #mediumInput="ngModel" multiple    > 
+                        <mat-option value="English"   >English</mat-option>
+                        <mat-option value="Hindi"  *ngIf=" state "  >Hindi</mat-option> 
+                        <mat-option value="Telugu"  *ngIf="state "  >Telugu</mat-option>
+                        
+                      </mat-select>
+                      <mat-error *ngIf="mediumInput.invalid">Please select a Medium.</mat-error>
+                    </mat-form-field><br> -->
+                    
+                   
+                     
+                    Weekdays
+                    <div *ngFor="let item of user.weekday">
+                       <span>{{item.slot}} </span>
+                       <a mat-icon-button (click)="delete('Weekday','weekday',item.slot)"><mat-icon> delete</mat-icon></a>
+                    </div><br>
+                     <!-- <mat-form-field  >
+                       <mat-label>Weekdays</mat-label>
+                       <mat-select [name]="'weekdays' "  [(ngModel)]=" weekday" [disabled]=" edit" #weekInput="ngModel" multiple   > 
+                        <div  *ngFor="let time of   weekday ;let idx = index">
+                          <mat-option [value]="time "    
+                            >    {{time }}</mat-option>  
+      
+                         </div> 
+                       </mat-select>
+                       <mat-error *ngIf="weekInput.invalid">Please select a weekdays.</mat-error>
+                     </mat-form-field><br>  -->
+
+                     Weekends
+                     <div *ngFor="let item of user.weekend">
+                        <span>{{item.slot}} </span>
+                        <a mat-icon-button (click)="delete('Weekend','weekend',item.slot)"><mat-icon> delete</mat-icon></a>
+                     </div><br>
+                     <!-- <mat-form-field  >
+                       <mat-label>Weekends</mat-label>
+                       <mat-select [name]="'weekends' "  [(ngModel)]=" weekend" [disabled]=" edit"    #endInput="ngModel" multiple   > 
+                        <div  *ngFor="let time of  weekend ;let idx = index">
+                          <mat-option [value]="time "  >   {{time  }}</mat-option>  
+       
+                         </div> 
+                       </mat-select>
+                       <mat-error *ngIf="endInput.invalid">Please select a week ends.</mat-error>
+                     </mat-form-field><br>  -->
+
+                     <div  *ngFor="let c of user.teaches;let i = index" style="margin-top: 2px; border: .5px solid rgba(88, 88, 88, 0.432); padding: 10px ; border-radius: 5px;">
+                      <mat-form-field  >
+                        <mat-label>Classes</mat-label> 
+                            <input matInput [name]="'classes'+i "  maxlength="200" minlength="4"  [(ngModel)]="c.class" [disabled]=" edit" 
+                             type="text" placeholder="User Name"    #clInput="ngModel" >
+                            <mat-error  *ngIf="clInput.invalid">Please enter a valid user name.</mat-error>
+ 
+                        
+                      </mat-form-field><br> 
+
+                      <mat-form-field  >
+                        <mat-label>Subjects</mat-label>
+                        <mat-select [name]="'subjects'+i "  [(ngModel)]="c.subjects" [disabled]=" edit"   multiple   #subjectInput="ngModel"    >
+                         <mat-option *ngFor="let subject of c.subjects" [value]="subject">{{subject}}    </mat-option> 
+                        </mat-select>
+                        <mat-error *ngIf="subjectInput.invalid">Please select a Subject.</mat-error>
+                      </mat-form-field><br>
+                    </div>
+                    <div class="row">
+                      <div class="  m-auto">
+                        <a style="cursor: pointer; margin-left: auto !important; margin-right: auto !important;" (click)="count.push( {subject : 0 })" mat-icon-button >
+                          <mat-icon>add_box</mat-icon>
+                        </a>
+                      </div>
+                    </div>
+                     
+                 <br>
+               </div>     
+                </div> 
+             <br>
+                  <mat-error *ngIf="r"> {{r}}</mat-error>
+                    <div class="row">
+                        <button class="m-auto" mat-raised-button  *ngIf="!isLoading3"
+                        type="submit" style="background-color: rgba(0, 0, 255, 0.603) !important; text-align: center !important ; color: white;" >
+                        Submit</button>
+      
+                        <button class="m-auto" *ngIf="isLoading3"  mat-raised-button style="background-color: rgba(0, 0, 255, 0.603) !important; color: white;" type="button" disabled>
+                          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                          Loading...
+                        </button>
+  
+                    </div>
+                      
+                </form>
+          </mat-tab>
+          <mat-tab label="   Courses "> 
+            
+          </mat-tab>
+
+          <mat-tab label="KYC Documents "> 
+            kyc <br>
+            <img [src]="user.kyc.aadhar_card_image" height="500px" width="500px" alt="">
+            <img [src]="user.kyc.id_card_image" height="500px" width="500px" alt=""><br>
+            <div class="video">
+                <video controls  width="320" style="border-radius: 5px;" #videoPlayer>
+                    <source [src]="user.demo_video" type="video/mp4" />
+                    Browser not supported
+                </video>
+            </div><br>
+          </mat-tab>
+
+
+
+
+        </mat-tab-group>
+ 
+    </mat-card> 
+</div>
